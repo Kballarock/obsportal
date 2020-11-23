@@ -1,0 +1,43 @@
+<configuration>
+
+	<jmxConfigurator/>
+
+	<appender name="file" class="ch.qos.logback.core.FileAppender">
+		<file>d:/obsportal/log/obsportal.log</file>
+		<encoder>
+			<charset>UTF-8</charset>
+			<pattern>%date %-5level %logger{50}.%M:%L - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+    <conversionRule conversionWord="stack" converterClass="net.logstash.logback.stacktrace.ShortenedThrowableConverter" />
+    
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			 <pattern>
+			     obsportal - %date [%thread] %highlight(%-5level) %logger{5} - %message%n%stack{5,1}
+			</pattern>
+		</encoder>
+		
+	</appender>
+
+	<logger name="by.obs.portal" level="DEBUG" />
+	<logger name="org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver" level="DEBUG"/>
+
+
+	<!-- to view SQL statements, change to DEBUG -->
+	<logger name="org.hibernate.SQL" level="WARN" />
+
+	<logger name="org.springframework" level="WARN" />
+	<logger name="org.springframework.transaction" level="WARN" />
+	<logger name="org.springframework.security.web.csrf.CsrfFilter" level="DEBUG"/>
+
+	<!-- in order to debug some marshalling issues, this needs to be TRACE -->
+	<logger name="org.springframework.web.servlet.mvc" level="WARN" />
+
+	<root level="INFO">
+		<appender-ref ref="file"/>
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

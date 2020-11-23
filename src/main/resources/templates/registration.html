@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:insert="~{/fragments/headTag :: copy}">
+    <title id="pageTitle">[[#{title.register}]]</title>
+</head>
+<link th:href="@{/resources/css/auth.css}" rel="stylesheet">
+
+<body>
+<div th:insert="~{/fragments/wait :: copy}"></div>
+
+<!-- ======= Registration form ======= -->
+<section id="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-top: -80px">
+                <div class="card card-signin my-5">
+                    <div ><a class="close pull-right p-2" th:href="@{/}">&times;</a></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center" th:text="#{registration.welcome.msg}"></h5>
+                        <form class="form-signin" th:action="@{registration}" th:method="POST" th:object="${userDto}">
+
+                            <div class="alert alert-arrow alert-arrow-danger d-flex rounded p-0 text-center" role="alert" th:if="${error}">
+                                <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                    <i class="fa fa-times-circle"></i>
+                                </div>
+                                <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${error}">
+                                    Email exist
+                                </div>
+                                <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input th:field="*{name}" type="text" id="inputName" class="form-control" th:placeholder="#{common.name}" required autofocus>
+                                <label for="inputName" th:text="#{common.name}"></label>
+                            </div>
+
+                            <div class="alert alert-arrow alert-arrow-danger d-flex rounded p-0 text-center"  role="alert" th:if="${#fields.hasErrors('name')}">
+                                <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                    <i class="fa fa-times-circle"></i>
+                                </div>
+                                <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:errors="*{name}">
+                                    Name validation error
+                                </div>
+                                <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input th:field="*{email}" type="email" id="inputEmail" class="form-control" th:placeholder="#{common.email}" required autofocus>
+                                <label for="inputEmail" th:text="#{common.email}"></label>
+                            </div>
+
+                            <div class="alert alert-arrow alert-arrow-danger d-flex rounded p-0 text-center" role="alert" th:if="${#fields.hasErrors('email')}">
+                                <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                    <i class="fa fa-times-circle"></i>
+                                </div>
+                                <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:errors="*{email}">
+                                    Email validation error
+                                </div>
+                                <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input th:field="*{password}" type="password" id="inputPassword" class="form-control" th:placeholder="#{common.password}" required>
+                                <label for="inputPassword" th:text="#{common.password}"></label>
+                            </div>
+
+                            <div class="alert alert-arrow alert-arrow-danger d-flex rounded p-0 text-center" style="text-align: center" role="alert" th:if="${#fields.hasErrors('password')}">
+                                <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                    <i class="fa fa-times-circle"></i>
+                                </div>
+                                <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:errors="*{password}">
+                                    Password validation error
+                                </div>
+                                <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input th:field="*{matchingPassword}" type="password" id="confirmPassword" class="form-control" th:placeholder="#{registration.confirmPassword.input}" required>
+                                <label for="confirmPassword" th:text="#{registration.confirmPassword.input}"></label>
+                            </div>
+
+                            <button class="btn btn-lg btn-singIn btn-block text-uppercase" type="submit" th:text="#{registration.createAccount.btn}"></button>
+                            <a class="btn btn-lg btn-google btn-block text-uppercase" th:href="@{/oauth2/authorize/google}"><i class="fa fa-google mr-2"></i>[[#{registration.google.btn}]]</a>
+                            <hr class="my-4">
+                            <div class="d-flex justify-content-center links">
+                                [[#{common.account2}]]<a th:href="@{login}" class="ml-2" th:text="#{common.singIn.btn}"></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End registration form -->
+
+<!-- ======= Footer ======= -->
+<footer th:insert="~{/fragments/footer :: copy}" style="margin-top: 140px"></footer>
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- ======= Scripts ======= -->
+<div th:insert="~{/fragments/scriptTag :: copy}"></div>
+</body>
+</html>

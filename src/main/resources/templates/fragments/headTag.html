@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:fragment="copy">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <title th:include=":: #pageTitle"></title>
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <link th:href="@{/resources/img/obs_icon.ico}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Roboto:100,300,400,500,700|Philosopher:400,400i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{/resources/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/vendor/animate.css/animate.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/vendor/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+
+    <!-- Webjars CSS Files -->
+    <link th:href="@{/webjars/flag-icon-css/2.4.0/css/flag-icon.min.css}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{/resources/css/style.css}" rel="stylesheet">
+</head>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="~{/fragments/headTag :: copy}">
+    <title id="pageTitle">[[#{title.register}]]</title>
+</head>
+<link th:href="@{/resources/css/animateicon.css}" rel="stylesheet">
+<body>
+
+<section id="hero">
+<section id="testimonials" class="padd-section text-center wow fadeIn">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div ><a class="close pull-right p-2" th:href="@{/}">&times;</a></div>
+                <div class="testimonials-content">
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item  active">
+
+                                <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                                    <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                                    <span class="swal2-success-line-tip"></span>
+                                    <span class="swal2-success-line-long"></span>
+                                    <div class="swal2-success-ring"></div>
+                                    <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                                    <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+                                </div>
+
+                                <div class="top-top">
+                                    <h2 th:utext="#{message.reg.title}"></h2>
+
+                                    <div class="alert alert-arrow d-flex rounded p-0" role="alert">
+                                        <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" style="font-size: 20px; margin: 0 auto" th:utext="#{message.reg.text}">
+                                            Success
+                                        </div>
+                                    </div>
+
+                                    <a th:href="@{/}" class="btn btn-success" th:text="#{common.back.main}"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+</section>
+
+<!-- ======= Scripts ======= -->
+<div th:insert="~{/fragments/scriptTag :: copy}"></div>
+</body>
+</html>

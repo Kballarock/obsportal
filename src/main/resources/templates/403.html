@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="~{/fragments/headTag :: copy}">
+    <title id="pageTitle">[[#{title.error}]]</title>
+</head>
+<link th:href="@{/resources/css/animateicon.css}" rel="stylesheet">
+<body>
+<section id="hero">
+    <section id="testimonials" class="padd-section text-center wow fadeIn">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div>
+                        <button class="close pull-right p-2" onclick="window.history.back()">&times;</button>
+                    </div>
+                    <div class="testimonials-content-alert">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item  active">
+                                    <div class="swal2-icon swal2-error swal2-animate-error-icon" style="display: flex;">
+                                        <span class="swal2-x-mark">
+                                            <span class="swal2-x-mark-line-left"></span>
+                                            <span class="swal2-x-mark-line-right"></span>
+                                        </span>
+                                    </div>
+
+                                    <div class="top-top">
+                                        <h2>403 FORBIDDEN</h2>
+
+                                        <div class="alert alert-arrow alert-arrow-danger d-flex rounded p-0"
+                                             role="alert">
+                                            <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                                <i class="fa fa-times-circle"></i>
+                                            </div>
+                                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" style="font-size: 20px; margin: 0 auto" th:utext="#{error.accessDenied}">
+                                                Message
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-4">
+                                        <h3 th:utext="'Error: ' + #{error.accessDenied.msg}"></h3>
+                                        <hr class="my-4">
+
+                                        <button onclick="window.history.back()" class="btn btn-danger" th:text=" '&nbsp;' + #{common.back.main}"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<!-- ======= Scripts ======= -->
+<div th:insert="~{/fragments/scriptTag :: copy}"></div>
+</body>
+</html>

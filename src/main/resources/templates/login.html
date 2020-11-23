@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head th:insert="~{/fragments/headTag :: copy}">
+    <title id="pageTitle">[[#{title.login}]]</title>
+</head>
+<link th:href="@{/resources/css/auth.css}" rel="stylesheet">
+
+<body>
+<!-- ======= Login form ======= -->
+<section id="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-top: -80px">
+                <div class="card card-signin my-5">
+                    <div ><a class="close pull-right p-2" th:href="@{/}">&times;</a></div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center" th:text="#{login.welcome.msg}"></h5>
+
+                        <!-- ======= Error and Info Messages ======= -->
+                        <div class="alert alert-arrow alert-arrow-danger d-flex rounded p-0 text-center" role="alert" th:if="${error}">
+                            <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                <i class="fa fa-times-circle"></i>
+                            </div>
+                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${error}">
+                                Error
+                            </div>
+                            <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+                        <div class="alert alert-arrow alert-arrow-danger d-flex rounded p-0 text-center" role="alert" th:if="${param.error!=null}">
+                            <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                <i class="fa fa-times-circle"></i>
+                            </div>
+                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${session[SPRING_SECURITY_LAST_EXCEPTION]}">
+                                Error
+                            </div>
+                            <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+                        <div class="alert alert-arrow alert-arrow-warning d-flex rounded p-0 text-center" role="alert" th:if="${param.invalidSession}">
+                            <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                <i class="fa fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="#{invalid.session.msg}">
+                                Warning
+                            </div>
+                            <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+                        <div class="alert alert-arrow alert-arrow-primary d-flex rounded p-0 text-center" role="alert" th:if="${param.logout}">
+                            <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                <i class="fa fa-info"></i>
+                            </div>
+                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="#{logout.success.msg}">
+                                Info
+                            </div>
+                            <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+                        <div class="alert alert-arrow d-flex rounded p-0 text-center" role="alert" th:if="${param.message!=null}">
+                            <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${param.message[0]}">
+                                Success
+                            </div>
+                            <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+
+                        <div class="alert alert-arrow d-flex rounded p-0 text-center" role="alert" th:if="${message}">
+                            <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                                <i class="fa fa-check"></i>
+                            </div>
+                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${message}">
+                                Success
+                            </div>
+                            <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                        <!-- ======= End Error and Info Messages ======= -->
+
+                        <form class="form-signin" th:action="login" method='POST'>
+
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control" name="email" th:placeholder="#{common.email}" required autofocus>
+                                <label for="inputEmail" th:text="#{common.email}"></label>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="inputPassword" class="form-control" name="password" th:placeholder="#{common.password}" required>
+                                <label for="inputPassword" th:text="#{common.password}"></label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox mb-3">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1" name="remember-me">
+                                <label class="custom-control-label" for="customCheck1" th:text="#{login.rememberMe.checkbox}"></label>
+                            </div>
+
+                            <button class="btn btn-lg btn-singIn btn-block" type="submit" th:text="#{common.singIn.btn}"></button>
+                            <a class="btn btn-lg btn-google btn-block" th:href="@{/oauth2/authorize/google}"><i class="fa fa-google mr-2"></i>[[#{login.google.btn}]]</a>
+
+                            <hr class="my-4">
+                            <div style="text-decoration: none">
+                                <div class="d-flex justify-content-center links">
+                                    [[#{common.account}]]<a th:href="@{registration}" class="ml-2" th:text="#{login.registration}"></a>
+                                </div>
+                                <div class="d-flex justify-content-center links">
+                                    <a th:href="@{forgetPassword}" th:text="#{login.forgot.password}"></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End login form -->
+
+<!-- ======= Footer ======= -->
+<footer th:insert="~{/fragments/footer :: copy}"></footer>
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- ======= Scripts ======= -->
+<div th:insert="~{/fragments/scriptTag :: copy}"></div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<div th:fragment="copy" id="loading" class="loading" style="display: none">
+    <h1 style="margin-top: 180px"><strong th:text="#{common.wait}"></strong></h1>
+    <img id="loading-image" th:src="@{/resources/gif/loading.gif}" alt="Loading..."/>
+</div>
+</html>
