@@ -26,7 +26,13 @@ public class MailUtil {
 
     public static SimpleMailMessage resendVerificationTokenEmail(final String contextPath, final Locale locale,
                                                                  final VerificationToken newToken, final User user) {
-        final var confirmationUrl = contextPath + "/confirmRegistration.html?token=" + newToken.getToken();
+        String confirmationUrl;
+        if (contextPath.contains("rest")) {
+            confirmationUrl = contextPath + "/confirmRegistration?token=" + newToken.getToken();
+        } else {
+            confirmationUrl = contextPath + "/confirmRegistration.html?token=" + newToken.getToken();
+        }
+
         final var subject = messages.getMessage("message.confirm.registration", null, locale);
         final var message = messages.getMessage("message.registrationConfirm", null, locale);
         final var email = new SimpleMailMessage();
@@ -40,14 +46,21 @@ public class MailUtil {
     public static SimpleMailMessage resendResetPasswordTokenEmail(final String contextPath, final Locale locale,
                                                                   final String token, final User user) {
         final var userName = new String[]{user.getName()};
-        final var url = contextPath + "/service/changeNewPassword.html?id=" + user.getId() + "&token=" + token;
+        String resetPasswordUrl;
+
+        if (contextPath.contains("rest")) {
+            resetPasswordUrl = contextPath + "/service/changeNewPassword?id=" + user.getId() + "&token=" + token;
+        } else {
+            resetPasswordUrl = contextPath + "/service/changeNewPassword.html?id=" + user.getId() + "&token=" + token;
+        }
+
         final var message = messages.getMessage("message.resetPassword.text", userName, locale);
         final var messageInfo = messages.getMessage("message.resetPassword.text2", userName, locale);
         final var subject = messages.getMessage("message.resetPassword", null, locale);
         final var email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject(subject);
-        email.setText(message + " \r\n\n" + url + " \r\n\n" + messageInfo);
+        email.setText(message + " \r\n\n" + resetPasswordUrl + " \r\n\n" + messageInfo);
         email.setFrom(Objects.requireNonNull(env.getProperty("spring.mail.username")));
         return email;
     }

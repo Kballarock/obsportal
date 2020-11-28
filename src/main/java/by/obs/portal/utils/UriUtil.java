@@ -18,4 +18,8 @@ public class UriUtil {
     public static String getAppUrl(HttpServletRequest request) {
         return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
     }
+
+    public static String getAppUrlForRest(HttpServletRequest request) {
+        return "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/rest";
+    }
 }

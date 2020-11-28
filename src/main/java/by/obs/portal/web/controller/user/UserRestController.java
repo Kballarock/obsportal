@@ -39,7 +39,7 @@ import java.util.UUID;
 import static by.obs.portal.common.Constants.*;
 import static by.obs.portal.utils.MailUtil.resendResetPasswordTokenEmail;
 import static by.obs.portal.utils.MailUtil.resendVerificationTokenEmail;
-import static by.obs.portal.utils.UriUtil.getAppUrl;
+import static by.obs.portal.utils.UriUtil.getAppUrlForRest;
 
 @RestController
 @RequestMapping(value = UserRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -85,7 +85,7 @@ public class UserRestController {
         final var newUser = userService.create(UserUtil.createNewFromDto(userDto));
         final var uriOfNewResource = UriUtil.createNewURI(REST_URL, newUser.getId());
 
-        eventPublisher.publishEvent(new RegistrationCompleteEvent(newUser, request.getLocale(), getAppUrl(request)));
+        eventPublisher.publishEvent(new RegistrationCompleteEvent(newUser, request.getLocale(), getAppUrlForRest(request)));
         return ResponseEntity.created(uriOfNewResource).body(newUser);
     }
 
@@ -119,7 +119,7 @@ public class UserRestController {
         final var newToken = verificationTokenService.generateNewVerificationToken(token);
         final var user = verificationTokenService.getByVerificationToken(newToken.getToken());
 
-        mailSender.send(resendVerificationTokenEmail(getAppUrl(request), request.getLocale(), newToken, user));
+        mailSender.send(resendVerificationTokenEmail(getAppUrlForRest(request), request.getLocale(), newToken, user));
 
         return new ResponseEntity<>(
                 messages.getMessage("message.resendToken", null, request.getLocale()),
@@ -142,7 +142,7 @@ public class UserRestController {
         final var token = UUID.randomUUID().toString();
         passwordResetTokenService.createPasswordResetToken(user, token);
 
-        final var resetMessage = resendResetPasswordTokenEmail(getAppUrl(request), locale, token, user);
+        final var resetMessage = resendResetPasswordTokenEmail(getAppUrlForRest(request), locale, token, user);
         mailSender.send(resetMessage);
 
         return new ResponseEntity<>(
