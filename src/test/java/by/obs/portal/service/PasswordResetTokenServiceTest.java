@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.UUID;
 
+import static by.obs.portal.common.Constants.TOKEN_EXPIRED;
+import static by.obs.portal.common.Constants.TOKEN_INVALID;
 import static by.obs.portal.testdata.UserTestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 

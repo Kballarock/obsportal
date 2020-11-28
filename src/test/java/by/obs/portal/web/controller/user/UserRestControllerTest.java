@@ -10,6 +10,7 @@ import by.obs.portal.web.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -87,6 +88,7 @@ class UserRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
+    @Transactional
     void confirmRegistrationWithExpiredToken() throws Exception {
         User created = registerNewUserFromDto(USER_DTO_3);
         VerificationToken verificationToken = verificationTokenRepository.getByUserId(created.id());

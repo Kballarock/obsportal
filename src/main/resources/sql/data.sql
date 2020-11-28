@@ -7,8 +7,7 @@ DELETE FROM verification_token WHERE id;
 ALTER TABLE users AUTO_INCREMENT = 100000;
 INSERT INTO users (name, email, password, registered, enabled, provider, provider_id) VALUES
 ('Admin', 'admin@admin.com', '$2a$10$.ep1D0bvqWFKjfBGAMvGo.pO4deV.oC0y1fAM37PPWSaxy.dCQ4FK','2020-05-21', true, 'local', null),
-('User', 'user@user.com', '$2a$10$twPQhTPltGPZ4lka./SUsuBbkmobOeZBFJ2CepmN5kSgJFSC0tuke','2020-05-21', true, 'local', null),
-('Alex', 'a.bondarenko@raschet.by', '$2a$10$twPQhTPltGPZ4lka./SUsuBbkmobOeZBFJ2CepmN5kSgJFSC0tuke','2020-05-21', true, 'local', null);
+('User', 'user@user.com', '$2a$10$twPQhTPltGPZ4lka./SUsuBbkmobOeZBFJ2CepmN5kSgJFSC0tuke','2020-05-21', true, 'local', null);
 
 ALTER TABLE role AUTO_INCREMENT = 1;
 INSERT INTO role (name) VALUES
@@ -23,8 +22,7 @@ INSERT INTO privilege (name) VALUES
 
 INSERT INTO users_roles (user_id, role_id) VALUES
 (100000, 1),
-(100001, 2),
-(100002, 2);
+(100001, 2);
 
 INSERT INTO roles_privileges (role_id, privilege_id) VALUES
 (1, 1),

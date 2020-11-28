@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.UUID;
 
+import static by.obs.portal.common.Constants.*;
 import static by.obs.portal.testdata.UserTestData.*;
+import static by.obs.portal.testdata.UserTestData.USER;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -112,7 +114,6 @@ class VerificationTokenServiceTest extends AbstractServiceTest {
         var originalToken = new VerificationToken(verificationTokenService.getVerificationToken(token));
         var newToken = verificationTokenService.generateNewVerificationToken(token);
         assertNotEquals(newToken.getToken(), originalToken.getToken());
-        assertNotEquals(newToken.getExpiryDate(), originalToken.getExpiryDate());
         assertNotEquals(newToken, originalToken);
     }
 

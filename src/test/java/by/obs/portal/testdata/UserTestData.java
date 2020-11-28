@@ -26,10 +26,6 @@ public class UserTestData {
     public static final UserDto USER_DTO_3 = new UserDto("newUsername", "newusername@yandex.com",
             "password", "password");
 
-    public static final String TOKEN_INVALID = "Invalid Token";
-    public static final String TOKEN_EXPIRED = "Expired Token";
-    public static final String TOKEN_VALID = "Valid Token";
-
     public static User getNew() {
         Set<Role> roles = new HashSet<>();
         roles.add(ROLE_USER);
