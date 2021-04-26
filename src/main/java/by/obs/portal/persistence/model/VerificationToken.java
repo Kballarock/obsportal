@@ -6,7 +6,6 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Getter
 @Setter
@@ -51,16 +50,20 @@ public class VerificationToken extends AbstractBaseEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof VerificationToken)) return false;
+        if (!super.equals(o)) return false;
+
         VerificationToken that = (VerificationToken) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getToken(), that.getToken()) &&
-                Objects.equals(getExpiryDate(), that.getExpiryDate()) &&
-                Objects.equals(getUser(), that.getUser());
+
+        if (!getToken().equals(that.getToken())) return false;
+        return getUser().equals(that.getUser());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getToken(), getExpiryDate(), getUser());
+        int result = super.hashCode();
+        result = 31 * result + getToken().hashCode();
+        result = 31 * result + getUser().hashCode();
+        return result;
     }
 }

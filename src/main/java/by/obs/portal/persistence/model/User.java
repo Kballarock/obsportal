@@ -13,7 +13,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -77,18 +76,20 @@ public class User extends AbstractNamedEntity implements HasEmail {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User that = (User) o;
-        return Objects.equals(getId(), that.getId()) &&
-                Objects.equals(getName(), that.getName()) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(provider, that.provider) &&
-                Objects.equals(roles, that.roles);
+        if (!(o instanceof User)) return false;
+        if (!super.equals(o)) return false;
+
+        User user = (User) o;
+
+        if (!getId().equals(user.id())) return false;
+        return getEmail().equals(user.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), email, password, roles);
+        int result = super.hashCode();
+        result = 31 * result + getId().hashCode();
+        result = 31 * result + getEmail().hashCode();
+        return result;
     }
 }

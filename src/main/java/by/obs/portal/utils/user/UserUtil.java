@@ -1,6 +1,7 @@
 package by.obs.portal.utils.user;
 
 import by.obs.portal.persistence.model.AuthProvider;
+import by.obs.portal.persistence.model.Role;
 import by.obs.portal.persistence.model.User;
 import by.obs.portal.persistence.repository.RoleRepository;
 import by.obs.portal.web.dto.UserDto;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Component
@@ -22,8 +24,14 @@ public class UserUtil {
     }
 
     public static User createNewFromDto(UserDto userDto) {
+        Role userRole = roleRepository.getByName("ROLE_USER");
+        Set<Role> roles = new HashSet<>();
+
+        if (userRole != null) {
+            roles.add(userRole);
+        }
         return new User(null, userDto.getName(), userDto.getEmail(), userDto.getPassword(),
-                AuthProvider.local,null, Set.of(roleRepository.getByName("ROLE_USER")));
+                AuthProvider.local, null, roles);
     }
 
     public static User updateFromDto(User user, UserDto userDto) {

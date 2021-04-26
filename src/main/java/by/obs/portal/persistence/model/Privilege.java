@@ -1,10 +1,10 @@
 package by.obs.portal.persistence.model;
 
 import by.obs.portal.persistence.model.base.AbstractNamedEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
@@ -21,7 +21,7 @@ import java.util.Collection;
 @Table(name = "privilege")
 public class Privilege extends AbstractNamedEntity {
 
-    @ToString.Exclude
+    @JsonIgnore
     @ManyToMany(mappedBy = "privileges", fetch = FetchType.EAGER)
     private Collection<Role> roles;
 
