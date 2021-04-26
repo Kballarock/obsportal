@@ -21,6 +21,9 @@ import java.util.UUID;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class RegistrationListener implements ApplicationListener<RegistrationCompleteEvent> {
 
+    private static final String UI_URL = "/confirmRegistration.html?token=";
+    private static final String REST_URL = "http://localhost:8080/obsportal/rest/confirmRegistration?token=";
+
     VerificationTokenService verificationTokenService;
     MessageSource messages;
     JavaMailSender mailSender;
@@ -56,9 +59,9 @@ public class RegistrationListener implements ApplicationListener<RegistrationCom
         String confirmationUrl;
 
         if (appUrl.contains("rest")) {
-            confirmationUrl = appUrl + "/confirmRegistration?token=" + token;
+            confirmationUrl = REST_URL + token;
         } else {
-            confirmationUrl = "/confirmRegistration.html?token=" + token;
+            confirmationUrl = appUrl + UI_URL + token;
         }
 
         final var subject = messages.getMessage("message.confirm.registration", null, event.getLocale());

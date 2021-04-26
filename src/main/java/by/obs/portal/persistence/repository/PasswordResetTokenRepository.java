@@ -7,4 +7,8 @@ public interface PasswordResetTokenRepository {
     PasswordResetToken getByToken(String token);
 
     void save(PasswordResetToken passwordResetToken);
+
+    PasswordResetToken getByUserId(int id);
+
+    void deleteAllByUserId(int id);
 }

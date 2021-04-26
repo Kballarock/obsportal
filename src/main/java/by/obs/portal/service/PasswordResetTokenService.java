@@ -1,5 +1,6 @@
 package by.obs.portal.service;
 
+import by.obs.portal.persistence.model.PasswordResetToken;
 import by.obs.portal.persistence.model.User;
 import by.obs.portal.persistence.repository.PasswordResetTokenRepository;
 import lombok.AccessLevel;
@@ -26,11 +27,12 @@ public class PasswordResetTokenService {
     }
 
     public void createPasswordResetToken(final User user, final String token) {
-        final var myToken = new by.obs.portal.persistence.model.PasswordResetToken(token, user);
+        passwordTokenRepository.deleteAllByUserId(user.getId());
+        final var myToken = new PasswordResetToken(token, user);
         passwordTokenRepository.save(myToken);
     }
 
-    public by.obs.portal.persistence.model.PasswordResetToken getPasswordResetToken(final String token) {
+    public PasswordResetToken getPasswordResetToken(final String token) {
         return checkNotFound(passwordTokenRepository.getByToken(token), "Password reset token: " + token + " not found.");
     }
 
@@ -42,11 +44,11 @@ public class PasswordResetTokenService {
         }
 
         if (LocalDateTime.now().isAfter(passToken.getExpiryDate())) {
+            passwordTokenRepository.deleteAllByUserId(passToken.id());
             return TOKEN_EXPIRED;
         }
 
         final var user = passToken.getUser();
-        System.out.println();
         final var auth = new UsernamePasswordAuthenticationToken(user, null,
                 Collections.singletonList(new SimpleGrantedAuthority("CHANGE_PASSWORD_PRIVILEGE")));
 

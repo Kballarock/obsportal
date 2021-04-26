@@ -24,4 +24,14 @@ public class DataJpaPasswordResetTokenRepository implements PasswordResetTokenRe
     public void save(PasswordResetToken passwordResetToken) {
         repository.save(passwordResetToken);
     }
+
+    @Override
+    public PasswordResetToken getByUserId(int id) {
+        return repository.findByUserId(id);
+    }
+
+    @Override
+    public void deleteAllByUserId(int id) {
+        repository.deleteAllByUserId(id);
+    }
 }

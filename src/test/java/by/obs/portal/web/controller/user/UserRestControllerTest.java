@@ -1,8 +1,11 @@
 package by.obs.portal.web.controller.user;
 
+import by.obs.portal.persistence.model.PasswordResetToken;
 import by.obs.portal.persistence.model.User;
 import by.obs.portal.persistence.model.VerificationToken;
+import by.obs.portal.persistence.repository.PasswordResetTokenRepository;
 import by.obs.portal.persistence.repository.VerificationTokenRepository;
+import by.obs.portal.service.PasswordResetTokenService;
 import by.obs.portal.service.UserService;
 import by.obs.portal.utils.user.UserUtil;
 import by.obs.portal.web.controller.AbstractControllerTest;
@@ -20,8 +23,9 @@ import static by.obs.portal.utils.exception.ErrorType.VALIDATION_ERROR;
 import static by.obs.portal.web.exception.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@Transactional
 class UserRestControllerTest extends AbstractControllerTest {
 
     UserRestControllerTest() {
@@ -32,7 +36,13 @@ class UserRestControllerTest extends AbstractControllerTest {
     private UserService userService;
 
     @Autowired
+    private PasswordResetTokenService resetTokenService;
+
+    @Autowired
     private VerificationTokenRepository verificationTokenRepository;
+
+    @Autowired
+    private PasswordResetTokenRepository resetTokenRepository;
 
     @Test
     void registerNewUserAccount() throws Exception {
@@ -88,7 +98,6 @@ class UserRestControllerTest extends AbstractControllerTest {
     }
 
     @Test
-    @Transactional
     void confirmRegistrationWithExpiredToken() throws Exception {
         User created = registerNewUserFromDto(USER_DTO_3);
         VerificationToken verificationToken = verificationTokenRepository.getByUserId(created.id());
@@ -102,6 +111,79 @@ class UserRestControllerTest extends AbstractControllerTest {
                 .andExpect(status().isUnprocessableEntity());
 
         assertFalse(userService.get(created.id()).isEnabled());
+    }
+
+    @Test
+    void resendRegistrationToken() throws Exception {
+        User created = registerNewUserFromDto(USER_DTO_3);
+        VerificationToken verificationToken = verificationTokenRepository.getByUserId(created.id());
+        verificationToken.setExpiryDate(verificationToken.getExpiryDate().minusHours(25));
+        verificationTokenRepository.save(verificationToken);
+
+        String token = verificationToken.getToken();
+
+        perform(doGet("resendRegistrationToken")
+                .unwrap().param("token", token))
+                .andExpect(status().isOk());
+
+        assertFalse(userService.get(created.id()).isEnabled());
+    }
+
+    @Test
+    void resetPassword() throws Exception {
+        perform(doGet("service/resetPassword")
+                .unwrap().param("email", USER.getEmail()))
+                .andExpect(status().isOk());
+
+        assertNotNull(resetTokenRepository.getByUserId(USER.id()));
+    }
+
+    @Test
+    void resetPasswordWithNotExistingEmail() throws Exception {
+        perform(doGet("service/resetPassword")
+                .unwrap().param("email", "notExisting@mail.ru"))
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    void changeNewPasswordWithValidToken() throws Exception {
+        String token = UUID.randomUUID().toString();
+        resetTokenService.createPasswordResetToken(USER, token);
+        perform(doGet("service/changeNewPassword")
+                .unwrap()
+                .param("id", String.valueOf(USER.id()))
+                .param("token", token))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("http://localhost:8080/obsportal/updatePassword"));
+    }
+
+    @Test
+    void changeNewPasswordWithInvalidToken() throws Exception {
+        String token = UUID.randomUUID().toString();
+        resetTokenService.createPasswordResetToken(USER, token);
+        perform(doGet("service/changeNewPassword")
+                .unwrap()
+                .param("id", String.valueOf(USER.id()))
+                .param("token", "invalid_token"))
+                .andExpect(redirectedUrl("http://localhost:8080/obsportal/login"));
+
+    }
+
+    @Test
+    void changeNewPasswordWithExpiredToken() throws Exception {
+        String token = UUID.randomUUID().toString();
+        resetTokenService.createPasswordResetToken(USER, token);
+
+        PasswordResetToken passwordResetToken = resetTokenService.getPasswordResetToken(token);
+        passwordResetToken.setExpiryDate(passwordResetToken.getExpiryDate().minusHours(25));
+        resetTokenRepository.save(passwordResetToken);
+
+        perform(doGet("service/changeNewPassword")
+                .unwrap()
+                .param("id", String.valueOf(USER.id()))
+                .param("token", token))
+                .andExpect(redirectedUrl("http://localhost:8080/obsportal/login"));
+
     }
 
     private User registerNewUserFromDto(UserDto userDto) throws Exception {

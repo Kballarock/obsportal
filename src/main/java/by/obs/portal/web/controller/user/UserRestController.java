@@ -136,7 +136,7 @@ public class UserRestController {
         if (user == null) {
             return new ResponseEntity<>(
                     messages.getMessage("message.userNotFound", new String[]{email}, locale),
-                    HttpStatus.NOT_FOUND);
+                    HttpStatus.UNPROCESSABLE_ENTITY);
         }
 
         final var token = UUID.randomUUID().toString();

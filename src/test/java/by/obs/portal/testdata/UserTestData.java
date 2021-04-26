@@ -19,7 +19,7 @@ public class UserTestData {
             "user", AuthProvider.local, null, Set.of(ROLE_USER));
     public static final UserDto USER_DTO = new UserDto("newUsername", "newusername@gmail.com",
             "password", "password");
-    public static final UserDto USER_DTO_1 = new UserDto("newUsername", "newusername@mail.com",
+    public static final UserDto USER_DTO_1 = new UserDto("newUsername", "newusername@tmail.com",
             "password", "password");
     public static final UserDto USER_DTO_2 = new UserDto("newUsername", "newusername@test.com",
             "password", "password");
@@ -36,7 +36,7 @@ public class UserTestData {
     public static User getUpdated() {
         User updated = new User(USER);
         updated.setName("UpdatedUserName");
-        updated.setRoles(Set.of(ROLE_ADMIN));
+        updated.setPassword("newUserPassword");
         return updated;
     }
 
