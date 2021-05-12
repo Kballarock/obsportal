@@ -193,7 +193,7 @@ public class UserRestController {
 
         if (!userService.validOldPassword(user, updatePasswordDto.getOldPassword())) {
             return new ResponseEntity<>(
-                    messages.getMessage("message.resetPasswordSuccess", null, LocaleContextHolder.getLocale()),
+                    messages.getMessage("message.updatePasswordError", null, LocaleContextHolder.getLocale()),
                     HttpStatus.UNPROCESSABLE_ENTITY);
         }
 

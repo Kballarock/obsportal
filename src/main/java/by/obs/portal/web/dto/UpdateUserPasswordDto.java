@@ -25,4 +25,9 @@ public class UpdateUserPasswordDto {
     String newPassword;
 
     String confirmNewPassword;
+
+    public UpdateUserPasswordDto(String newPassword, String confirmNewPassword) {
+        this.newPassword = newPassword;
+        this.confirmNewPassword = confirmNewPassword;
+    }
 }

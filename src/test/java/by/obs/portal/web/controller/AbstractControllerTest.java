@@ -107,8 +107,8 @@ public abstract class AbstractControllerTest {
         return RequestWrapper.wrap(MockMvcRequestBuilders.delete(url + "{id}", id));
     }
 
-    protected RequestWrapper doPut() {
-        return RequestWrapper.wrap(MockMvcRequestBuilders.put(url));
+    protected RequestWrapper doPut(String s) {
+        return RequestWrapper.wrap(MockMvcRequestBuilders.put(url + s));
     }
 
     protected RequestWrapper doPut(int id) {

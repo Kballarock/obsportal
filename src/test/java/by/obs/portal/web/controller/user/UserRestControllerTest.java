@@ -9,6 +9,7 @@ import by.obs.portal.service.PasswordResetTokenService;
 import by.obs.portal.service.UserService;
 import by.obs.portal.utils.user.UserUtil;
 import by.obs.portal.web.controller.AbstractControllerTest;
+import by.obs.portal.web.dto.UpdateUserPasswordDto;
 import by.obs.portal.web.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -184,6 +185,84 @@ class UserRestControllerTest extends AbstractControllerTest {
                 .param("token", token))
                 .andExpect(redirectedUrl("http://localhost:8080/obsportal/login"));
 
+    }
+
+    @Test
+    void savePassword() throws Exception {
+        UpdateUserPasswordDto userPasswordDto =
+                new UpdateUserPasswordDto("newPassword", "newPassword");
+
+        perform(doPost("service/savePassword")
+                .jsonBody(userPasswordDto)
+                .basicAuth(USER))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("\"Пароль успешно изменен. Пожалуйста, выполните вход с новым паролем.\""));
+    }
+
+    @Test
+    void savePasswordWithWrongData_1() throws Exception {
+        UpdateUserPasswordDto userPasswordDto =
+                new UpdateUserPasswordDto("newPassword", "");
+
+        perform(doPost("service/savePassword")
+                .jsonBody(userPasswordDto)
+                .basicAuth(USER))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(errorType(VALIDATION_ERROR));
+    }
+
+    @Test
+    void savePasswordWithWrongData_2() throws Exception {
+        UpdateUserPasswordDto userPasswordDto =
+                new UpdateUserPasswordDto("newPsv", "newPsv");
+
+        perform(doPost("service/savePassword")
+                .jsonBody(userPasswordDto)
+                .basicAuth(USER))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(errorType(VALIDATION_ERROR));
+    }
+
+    @Test
+    void updatePassword() throws Exception {
+        UpdateUserPasswordDto userPasswordDto =
+                new UpdateUserPasswordDto("user", "newPassword", "newPassword");
+
+        perform(doPut("service/updatePassword")
+                .jsonBody(userPasswordDto)
+                .basicAuth(USER))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string("\"Пароль успешно изменен. Пожалуйста, выполните вход с новым паролем.\""));
+    }
+
+    @Test
+    void updatePasswordWithInvalidUserOldPassword() throws Exception {
+        UpdateUserPasswordDto userPasswordDto =
+                new UpdateUserPasswordDto("user123", "newPassword", "newPassword");
+
+        perform(doPut("service/updatePassword")
+                .jsonBody(userPasswordDto)
+                .basicAuth(USER))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(content().string("\"Старый пароль введен неверно.\""));
+    }
+
+    @Test
+    void updatePasswordWithInvalidUserNewPassword() throws Exception {
+        UpdateUserPasswordDto userPasswordDto =
+                new UpdateUserPasswordDto("user", "new", "newPassword");
+
+        perform(doPut("service/updatePassword")
+                .jsonBody(userPasswordDto)
+                .basicAuth(USER))
+                .andDo(print())
+                .andExpect(status().isUnprocessableEntity())
+                .andExpect(errorType(VALIDATION_ERROR));
     }
 
     private User registerNewUserFromDto(UserDto userDto) throws Exception {
