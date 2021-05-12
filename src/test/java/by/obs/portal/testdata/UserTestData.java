@@ -25,6 +25,7 @@ public class UserTestData {
             "password", "password");
     public static final UserDto USER_DTO_3 = new UserDto("newUsername", "newusername@yandex.com",
             "password", "password");
+    public static final List<User> USERS = List.of(USER, ADMIN);
 
     public static User getNew() {
         Set<Role> roles = new HashSet<>();
