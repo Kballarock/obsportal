@@ -22,7 +22,7 @@
                             <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
                                 <i class="fa fa-times-circle"></i>
                             </div>
-                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${error}">
+                            <div class="d-flex align-items-center py-2 pl-4 pr-3" th:utext="${error}">
                                 Error
                             </div>
                             <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
@@ -34,7 +34,7 @@
                             <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
                                 <i class="fa fa-times-circle"></i>
                             </div>
-                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${session[SPRING_SECURITY_LAST_EXCEPTION]}">
+                            <div class="d-flex align-items-center py-2 pl-4 pr-3" th:utext="${session[SPRING_SECURITY_LAST_EXCEPTION]}">
                                 Error
                             </div>
                             <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
@@ -46,7 +46,7 @@
                             <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
                                 <i class="fa fa-exclamation-triangle"></i>
                             </div>
-                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="#{invalid.session.msg}">
+                            <div class="d-flex align-items-center py-2 pl-4 pr-3" th:utext="#{invalid.session.msg}">
                                 Warning
                             </div>
                             <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
@@ -58,7 +58,7 @@
                             <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
                                 <i class="fa fa-info"></i>
                             </div>
-                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="#{logout.success.msg}">
+                            <div class="d-flex align-items-center py-2 pl-4 pr-3" th:utext="#{logout.success.msg}">
                                 Info
                             </div>
                             <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
@@ -70,7 +70,7 @@
                             <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
                                 <i class="fa fa-check"></i>
                             </div>
-                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${param.message[0]}">
+                            <div class="d-flex align-items-center py-2 pl-4 pr-3" th:utext="${param.message[0]}">
                                 Success
                             </div>
                             <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">
@@ -82,7 +82,7 @@
                             <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
                                 <i class="fa fa-check"></i>
                             </div>
-                            <div class="alert-message d-flex align-items-center py-2 pl-4 pr-3" th:utext="${message}">
+                            <div class="d-flex align-items-center py-2 pl-4 pr-3" th:utext="${message}">
                                 Success
                             </div>
                             <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3" data-dismiss="alert">

@@ -18,8 +18,8 @@
 
                 <li class="menu-has-children" sec:authorize="isAuthenticated()"><a><span class="fa fa-user"></span>&nbsp;</a>
 
-                    <ul style="width: 130px;">
-                        <li><a th:href="@{/editUserProfile}"><span class="fa fa-gear"></span>&nbsp;[[#{common.profile}]]</a></li>
+                    <ul style="width: 170px;">
+                        <li><a th:href="@{/profile/editPassword}"><span class="fa fa-gear"></span>&nbsp;[[#{common.profile}]]</a></li>
 
                         <li>
                             <a href="#" onclick="document.forms['logoutForm'].submit()"><span class="fa fa-sign-out" aria-hidden="true"></span>&nbsp;[[#{common.logout}]]</a>

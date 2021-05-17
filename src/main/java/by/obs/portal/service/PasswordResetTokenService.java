@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -17,6 +18,7 @@ import static by.obs.portal.common.Constants.*;
 import static by.obs.portal.utils.ValidationUtil.checkNotFound;
 
 @Service
+@Transactional
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class PasswordResetTokenService {
 

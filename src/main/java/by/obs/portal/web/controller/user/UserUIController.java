@@ -247,4 +247,34 @@ public class UserUIController {
             return "redirect:/login";
         }
     }
+
+    @GetMapping("/profile/editPassword")
+    public String editUserPassword(Model model) {
+        if (!model.containsAttribute("passwordDto")) {
+            model.addAttribute("passwordDto", new UpdateUserPasswordDto());
+        }
+        return "editPassword";
+    }
+
+    @PostMapping("/editPassword")
+    public String saveNewUserPassword(final RedirectAttributes redirectAttributes,
+                                @Validated(ErrorSequence.class) UpdateUserPasswordDto passwordDto, BindingResult result) {
+
+        final var authUser = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
+
+        if (!userService.validOldPassword(authUser, passwordDto.getOldPassword())) {
+            redirectAttributes.addFlashAttribute("message",
+                    messages.getMessage("message.updatePasswordError", null, LocaleContextHolder.getLocale()));
+            return "redirect:/profile/editPassword";
+        }
+
+        if (result.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.passwordDto", result);
+            redirectAttributes.addFlashAttribute("passwordDto", passwordDto);
+            return "redirect:/profile/editPassword";
+        }
+
+        userService.updatePassword(authUser, passwordDto.getNewPassword());
+        return "successEditPassword";
+    }
 }

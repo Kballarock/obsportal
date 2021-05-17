@@ -82,7 +82,7 @@ public class SecurityConfig {
                             "/confirmRegistration*", "/registrationError*", "/resendRegistrationToken*").permitAll()
                     .antMatchers("/admin/**").hasAuthority("WRITE_PRIVILEGE")
                     .antMatchers("/home/**").hasAnyAuthority("READ_PRIVILEGE", "WRITE_PRIVILEGE")
-                    .antMatchers("/service/updatePassword*",
+                    .antMatchers("/service/updatePassword*", "/profile/editPassword*",
                             "/service/savePassword*", "/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
 
                     .and()
