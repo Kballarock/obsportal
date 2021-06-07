@@ -23,15 +23,6 @@ h2 {
   font-weight: 600;
 }
 
-h4 {
-  color: #000;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  line-height: 2;
-}
-
 h5 {
   color: #626262;
   font-size: 14px;
@@ -89,6 +80,18 @@ span {
   padding: 15px 40px;
   text-transform: uppercase;
   transition: all 0.5s ease-in-out 0s;
+}
+
+.btn1 {
+  background-color: #34ce57;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn1:hover {
+  background-color: #219812;
 }
 
 .btn-default:hover {
@@ -1484,6 +1487,10 @@ body.mobile-nav-active #mobile-nav-toggle i {
 
 .alert-arrow-danger .alert-icon::after {
   border-left: .75rem solid #da4932;
+}
+tr[data-userEnabled="false"] {
+  opacity: 0.3;
+  color: #f30018;
 }
 
 /*--------------------------------------------------------------

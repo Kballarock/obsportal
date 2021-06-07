@@ -4,6 +4,7 @@ import by.obs.portal.common.Constants;
 import by.obs.portal.persistence.model.base.AbstractNamedEntity;
 import by.obs.portal.utils.user.HasEmail;
 import by.obs.portal.validation.ValidEmail;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -44,6 +45,7 @@ public class User extends AbstractNamedEntity implements HasEmail {
     @Enumerated(EnumType.STRING)
     AuthProvider provider;
 
+    @JsonIgnore
     @Column(name = "provider_id")
     String providerId;
 

@@ -80,7 +80,7 @@ public class SecurityConfig {
                     .antMatchers("/index", "/forgetPassword*", "/service/resetPassword*", "/login*",
                             "/registration*", "/service/changeNewPassword*", "/successRegistration", "/exception",
                             "/confirmRegistration*", "/registrationError*", "/resendRegistrationToken*").permitAll()
-                    .antMatchers("/admin/**").hasAuthority("WRITE_PRIVILEGE")
+                    .antMatchers("**/admin/**").hasAuthority("WRITE_PRIVILEGE")
                     .antMatchers("/home/**").hasAnyAuthority("READ_PRIVILEGE", "WRITE_PRIVILEGE")
                     .antMatchers("/service/updatePassword*", "/profile/editPassword*",
                             "/service/savePassword*", "/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
@@ -184,7 +184,7 @@ public class SecurityConfig {
 
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/rest/admin/**").hasRole("WRITE_PRIVILEGE")
+                    .antMatchers("**/admin/**").hasRole("WRITE_PRIVILEGE")
                     .antMatchers("/rest/registration", "/rest/confirmRegistration*",
                             "/rest/service/resetPassword*", "/rest/resendRegistrationToken*",
                             "/rest/service/changeNewPassword*").anonymous()
@@ -198,7 +198,7 @@ public class SecurityConfig {
 
                     .and()
                     .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED);
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         }
     }
 }

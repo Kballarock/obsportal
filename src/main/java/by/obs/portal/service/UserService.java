@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.*;
@@ -17,6 +18,7 @@ import static by.obs.portal.utils.user.UserUtil.prepareToSave;
 import static by.obs.portal.utils.ValidationUtil.checkNotFoundWithId;
 
 @Service
+@Transactional
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserService {
 

@@ -3,7 +3,7 @@
 
 <header id="header" class="header header-hide" th:fragment="copy">
     <div class="container">
-
+        <div id="locale" style="display: none" th:text="${#locale}"></div>
         <div id="logo" class="pull-left">
             <h1><a href="#" class="scrollto"><span>Billing</span>Portal</a></h1>
         </div>
@@ -11,18 +11,20 @@
         <nav id="nav-menu-container">
             <ul class="nav-menu">
                 <li><a th:href="@{login}" th:text="#{common.singIn.btn}" sec:authorize="anonymous"></a></li>
-                <li class="menu-active"><a th:href="@{registration}" th:text="#{common.singUp.btn}" sec:authorize="anonymous"></a></li>
-                <li><a th:href="@{users}" th:text="#{admin.users.link}" sec:authorize="hasAuthority('WRITE_PRIVILEGE')"></a></li>
-
-
+                <li class="menu-active"><a th:href="@{registration}" th:text="#{common.singUp.btn}"
+                                           sec:authorize="anonymous"></a></li>
+                <li><a th:href="@{users}" th:text="#{admin.users.link}"
+                       sec:authorize="hasAuthority('WRITE_PRIVILEGE')"></a></li>
 
                 <li class="menu-has-children" sec:authorize="isAuthenticated()"><a><span class="fa fa-user"></span>&nbsp;</a>
 
                     <ul style="width: 170px;">
-                        <li><a th:href="@{/profile/editPassword}"><span class="fa fa-gear"></span>&nbsp;[[#{common.profile}]]</a></li>
+                        <li><a th:href="@{/profile/editPassword}"><span class="fa fa-gear"></span>&nbsp;[[#{common.profile}]]</a>
+                        </li>
 
                         <li>
-                            <a href="#" onclick="document.forms['logoutForm'].submit()"><span class="fa fa-sign-out" aria-hidden="true"></span>&nbsp;[[#{common.logout}]]</a>
+                            <a href="#" onclick="document.forms['logoutForm'].submit()"><span class="fa fa-sign-out"
+                                                                                              aria-hidden="true"></span>&nbsp;[[#{common.logout}]]</a>
                             <form id="logoutForm" th:action="@{/logout}" method='POST' th:hidden="logout">
                                 <input id="logout" hidden type="submit">
                             </form>
@@ -31,16 +33,19 @@
 
                 </li>
 
-
-
                 <li class="menu-has-children"><a><span class="fa fa-language"></span>&nbsp;[[${#locale}]]</a>
                     <ul>
-                        <li><a class="flag-icon flag-icon-gb" href="?lang=en">&nbsp;&nbsp;&nbsp;[[#{common.lang.English}]]</a></li>
-                        <li><a class="flag-icon flag-icon-ru" href="?lang=ru">&nbsp;&nbsp;&nbsp;[[#{common.lang.Russian}]]</a></li>
+                        <li><a class="flag-icon flag-icon-gb" href="?lang=en">&nbsp;&nbsp;&nbsp;[[#{common.lang.English}]]</a>
+                        </li>
+                        <li><a class="flag-icon flag-icon-ru" href="?lang=ru">&nbsp;&nbsp;&nbsp;[[#{common.lang.Russian}]]</a>
+                        </li>
                     </ul>
                 </li>
             </ul>
         </nav>
     </div>
+    <script>
+        var locale = document.getElementById("locale").textContent;
+    </script>
 </header>
 </html>

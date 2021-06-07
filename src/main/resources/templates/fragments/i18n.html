@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<div th:fragment="copy">
+    <script th:inline="javascript">
+        var user_enabled_msg = /*[[#{user.msg.enabled}]]*/ 'Message not found';
+        var user_disabled_msg = /*[[#{user.msg.disabled}]]*/ 'Message not found';
+        var user_add_msg = /*[[#{user.msg.add}]]*/ 'Message not found';
+        var user_update_msg = /*[[#{user.msg.update}]]*/ 'Message not found';
+        var user_edit_msg = /*[[#{common.edit}]]*/ 'Message not found';
+        var user_delete_msg = /*[[#{common.delete}]]*/ 'Message not found';
+        var preDelete_msg = /*[[#{common.preDelete.msg}]]*/ 'Message not found';
+        var postDelete_msg = /*[[#{common.postDelete.msg}]]*/ 'Message not found';
+        var userAdded_msg = /*[[#{common.saved}]]*/ 'Message not found';
+    </script>
+</div>
+</html>

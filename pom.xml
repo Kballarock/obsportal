@@ -33,6 +33,10 @@
 
         <webjars-locator.version>0.40</webjars-locator.version>
         <webjars-flag.icon>2.4.0</webjars-flag.icon>
+        <webjars-jquery.version>3.6.0</webjars-jquery.version>
+        <webjars-datetimepicker.version>2.5.20</webjars-datetimepicker.version>
+        <webjars-noty.version>3.1.4</webjars-noty.version>
+        <webjars-datatables.version>1.10.24</webjars-datatables.version>
     </properties>
 
     <dependencies>
@@ -170,6 +174,47 @@
             <artifactId>flag-icon-css</artifactId>
             <version>${webjars-flag.icon}</version>
         </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${webjars-jquery.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables</artifactId>
+            <version>${webjars-datatables.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.webjars</groupId>
+                    <artifactId>jquery</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>datetimepicker</artifactId>
+            <version>${webjars-datetimepicker.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.webjars.bower</groupId>
+                    <artifactId>jquery</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.webjars.bower</groupId>
+                    <artifactId>php-date-formatter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>noty</artifactId>
+            <version>${webjars-noty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>datatables-plugins</artifactId>
+            <version>${webjars-datatables.version}</version>
+        </dependency>
 
         <!-- JSON -->
         <dependency>
@@ -197,6 +242,14 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/webapp</directory>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -214,7 +267,7 @@
                     <webResources>
                         <resource>
                             <directory>${basedir}/src/main/webapp</directory>
-                            <targetPath />
+                            <targetPath/>
                             <filtering>true</filtering>
                             <excludes>
                                 <exclude>**/*.woff</exclude>

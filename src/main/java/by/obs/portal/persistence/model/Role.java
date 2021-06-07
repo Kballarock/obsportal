@@ -1,6 +1,8 @@
 package by.obs.portal.persistence.model;
 
 import by.obs.portal.persistence.model.base.AbstractNamedEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,6 +20,7 @@ public class Role extends AbstractNamedEntity {
 
     @ManyToMany
     @ToString.Exclude
+    @JsonIgnore
     @JoinTable(name = "roles_privileges",
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
@@ -29,6 +32,12 @@ public class Role extends AbstractNamedEntity {
 
     public Role(String name) {
         super(name);
+    }
+
+    @Override
+    @JsonIgnore
+    public Integer getId() {
+        return super.getId();
     }
 
     @Override

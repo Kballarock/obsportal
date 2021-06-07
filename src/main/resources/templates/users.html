@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>[[#{title.users}]]</title>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="~{/fragments/headTag :: copy}">
+    <title id="pageTitle">[[#{title.users}]]</title>
 </head>
 <body>
-<h1>USERS</h1>
+<!-- ======= Header ======= -->
+<header th:insert="~{/fragments/header :: copy}"></header>
+
+<!-- ======= Main Section ======= -->
+<section id="hero" class="wow fadeIn" style="display: block; overflow: auto">
+    <div class="container">
+        <h3 class="text-center" th:text="#{title.users}"></h3>
+        <button th:title="#{common.add}" onclick="add()" class="btn1 rounded"><i class="fa fa-plus"></i></button>
+        <hr style="margin-top: 2px"/>
+        <table class="table table-sm table-striped" id="datatable">
+            <thead>
+            <tr>
+                <th th:utext="#{user.name}"></th>
+                <th th:text="#{user.email}"></th>
+                <th th:text="#{user.registered}"></th>
+                <th th:text="#{user.enabled}"></th>
+                <th th:text="#{user.provider}"></th>
+                <th th:text="#{user.roles}"></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+        <hr/>
+    </div>
+</section><!-- End Main Section -->
+
+<div class="modal fade" tabindex="-1" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="detailsForm">
+                    <input type="hidden" id="id" name="id">
+
+                    <div class="form-label-group">
+                        <label for="inputName" th:text="#{common.name}"></label>
+                        <input type="text" id="inputName" name="name" class="form-control" required autofocus>
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputEmail" th:text="#{common.email}"></label>
+                        <input type="email" id="inputEmail" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputPassword" th:text="#{common.password}"></label>
+                        <input type="password" id="inputPassword" name="password" class="form-control" required>
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="confirmPassword" th:text="#{registration.confirmPassword.input}"></label>
+                        <input type="password" id="confirmPassword" name="matchingPassword" class="form-control"
+                               required>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeNoty()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+                <button type="button" class="btn btn-success" onclick="save()">
+                    <span class="fa fa-check"></span>
+                    [[#{common.save}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<footer th:insert="~{/fragments/footer :: copy}"></footer>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- ======= Scripts ======= -->
+<div th:insert="~{/fragments/scriptTag :: copy}"></div>
+<script th:src="@{/resources/js/user.data.js}"></script>
+<div th:insert="~{/fragments/i18n :: copy}"></div>
 </body>
 </html>

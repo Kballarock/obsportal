@@ -35,8 +35,8 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/", "/resources/");
-        registry.addResourceHandler("/webjars/**").addResourceLocations("/", "/webjars/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
     }
 
     @Override
@@ -49,6 +49,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/forgetPassword").setViewName("forgetPassword");
         registry.addViewController("/successRegistration").setViewName("successRegistration");
         registry.addViewController("/registrationError").setViewName("registrationError");
+        registry.addViewController("/users").setViewName("users");
     }
 
     @Override
