@@ -6,7 +6,6 @@ import by.obs.portal.persistence.model.User;
 import by.obs.portal.persistence.repository.PrivilegeRepository;
 import by.obs.portal.persistence.repository.RoleRepository;
 import by.obs.portal.service.UserService;
-import by.obs.portal.spring.TestDataBaseConfig;
 import by.obs.portal.utils.TimingExtension;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -14,9 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
@@ -24,17 +20,11 @@ import java.util.*;
 import static by.obs.portal.testdata.UserTestData.getNew;
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringJUnitWebConfig(SpringSecurityRoleTest.Config.class)
-@SpringBootTest(classes = {TestDataBaseConfig.class})
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ExtendWith(TimingExtension.class)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Transactional
 public class SpringSecurityRoleTest {
-
-    @Configuration
-    @ComponentScan({"by.obs.portal"})
-    static class Config {
-    }
 
     @Autowired
     UserService userService;

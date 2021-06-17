@@ -44,7 +44,7 @@ public class AdminRestController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@Validated(ErrorSequence.class) @RequestBody User user) {
         User created = userService.create(user);
-
+        userService.enable(created.id(), true);
         URI uriOfNewResource = UriUtil.createNewURI(REST_URL, created.getId());
 
         return ResponseEntity.created(uriOfNewResource).body(created);
@@ -61,6 +61,7 @@ public class AdminRestController {
     public void update(@Validated(ErrorSequence.class) @RequestBody User user, @PathVariable int id) {
         assureIdConsistent(user, id);
         userService.update(user);
+        userService.enable(id, true);
     }
 
     @GetMapping("/by")

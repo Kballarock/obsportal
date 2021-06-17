@@ -12,9 +12,9 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 @NoArgsConstructor
 @AllArgsConstructor
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @Data
-public class AbstractBaseEntity implements HasId {
+public abstract class AbstractBaseEntity implements HasId {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

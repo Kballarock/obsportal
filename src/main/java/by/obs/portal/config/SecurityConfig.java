@@ -37,7 +37,6 @@ import org.springframework.security.web.authentication.rememberme.InMemoryTokenR
 public class SecurityConfig {
 
     @Configuration
-    @ComponentScan("by.obs.portal.security")
     @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
     public static class UISecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -70,7 +69,7 @@ public class SecurityConfig {
 
         @Override
         public void configure(final WebSecurity web) {
-            web.ignoring().antMatchers("/resources/**");
+            web.ignoring().antMatchers("/resources/**", "/webjars/**");
         }
 
         @Override
@@ -80,7 +79,7 @@ public class SecurityConfig {
                     .antMatchers("/index", "/forgetPassword*", "/service/resetPassword*", "/login*",
                             "/registration*", "/service/changeNewPassword*", "/successRegistration", "/exception",
                             "/confirmRegistration*", "/registrationError*", "/resendRegistrationToken*").permitAll()
-                    .antMatchers("**/admin/**").hasAuthority("WRITE_PRIVILEGE")
+                    .antMatchers("/**/admin/**", "/users").hasAuthority("WRITE_PRIVILEGE")
                     .antMatchers("/home/**").hasAnyAuthority("READ_PRIVILEGE", "WRITE_PRIVILEGE")
                     .antMatchers("/service/updatePassword*", "/profile/editPassword*",
                             "/service/savePassword*", "/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
@@ -164,7 +163,6 @@ public class SecurityConfig {
 
     @Configuration
     @Order(1)
-    @ComponentScan("by.obs.portal.security")
     @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
     public static class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -184,7 +182,7 @@ public class SecurityConfig {
 
                     .and()
                     .authorizeRequests()
-                    .antMatchers("**/admin/**").hasRole("WRITE_PRIVILEGE")
+                    .antMatchers("/rest/admin/**").hasAuthority("WRITE_PRIVILEGE")
                     .antMatchers("/rest/registration", "/rest/confirmRegistration*",
                             "/rest/service/resetPassword*", "/rest/resendRegistrationToken*",
                             "/rest/service/changeNewPassword*").anonymous()

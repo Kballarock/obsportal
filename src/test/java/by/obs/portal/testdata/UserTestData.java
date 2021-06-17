@@ -30,14 +30,15 @@ public class UserTestData {
     public static User getNew() {
         Set<Role> roles = new HashSet<>();
         roles.add(ROLE_USER);
-        return new User(null, "NewUser", "newuser@newuser.com",
+        User newUser = new User(null, "NewUser", "newuser@newuser.com",
                 "password", AuthProvider.local, null, roles);
+        newUser.setEnabled(true);
+        return newUser;
     }
 
     public static User getUpdated() {
         User updated = new User(USER);
         updated.setName("UpdatedUserName");
-        updated.setPassword("newUserPassword");
         return updated;
     }
 

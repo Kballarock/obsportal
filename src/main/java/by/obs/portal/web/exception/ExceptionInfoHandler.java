@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import java.util.Map;
 import java.util.Optional;
@@ -48,9 +49,8 @@ public class ExceptionInfoHandler {
         return ResponseEntity.status(appEx.getType().getStatus()).body(errorInfo);
     }
 
-    @ResponseStatus(value = HttpStatus.CONFLICT)
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ErrorInfo conflict(HttpServletRequest req, DataIntegrityViolationException e) {
+    public ErrorInfo conflict(HttpServletRequest req, HttpServletResponse res, DataIntegrityViolationException e) {
         var rootMsg = ValidationUtil.getRootCause(e).getMessage();
         if (rootMsg != null) {
             var lowerCaseMsg = rootMsg.toLowerCase();
@@ -58,9 +58,11 @@ public class ExceptionInfoHandler {
                     .filter(it -> lowerCaseMsg.contains(it.getKey()))
                     .findAny();
             if (entry.isPresent()) {
+                res.setStatus(422);
                 return logAndGetErrorInfo(req, e, false, VALIDATION_ERROR, messageUtil.getMessage(entry.get().getValue()));
             }
         }
+        res.setStatus(409);
         return logAndGetErrorInfo(req, e, true, DATA_ERROR);
     }
 

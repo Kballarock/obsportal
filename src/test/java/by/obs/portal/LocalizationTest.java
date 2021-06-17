@@ -1,6 +1,5 @@
 package by.obs.portal;
 
-import by.obs.portal.spring.TestIntegrationConfig;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.hamcrest.Matchers.containsString;
 
 
-@SpringBootTest(classes = {ObsPortalApplication.class, TestIntegrationConfig.class},
-        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class LocalizationTest {
 
     @Value("${local.server.port}")

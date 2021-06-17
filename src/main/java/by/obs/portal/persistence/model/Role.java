@@ -2,9 +2,9 @@ package by.obs.portal.persistence.model;
 
 import by.obs.portal.persistence.model.base.AbstractNamedEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,6 +15,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Table(name = "role")
+@SuperBuilder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role extends AbstractNamedEntity {
 
@@ -26,18 +27,12 @@ public class Role extends AbstractNamedEntity {
             inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
     Collection<Privilege> privileges;
 
-    public Role(int id, String name) {
-        super(id, name);
-    }
-
     public Role(String name) {
         super(name);
     }
 
-    @Override
-    @JsonIgnore
-    public Integer getId() {
-        return super.getId();
+    public Role(Integer id, String name) {
+        super(id, name);
     }
 
     @Override

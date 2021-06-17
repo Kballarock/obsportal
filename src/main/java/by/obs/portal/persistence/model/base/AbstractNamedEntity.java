@@ -10,8 +10,8 @@ import javax.validation.constraints.NotBlank;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-@SuperBuilder
-public class AbstractNamedEntity extends AbstractBaseEntity {
+@SuperBuilder(toBuilder = true)
+public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @NotBlank
     private String name;
