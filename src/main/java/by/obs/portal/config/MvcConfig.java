@@ -50,6 +50,7 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/successRegistration").setViewName("successRegistration");
         registry.addViewController("/registrationError").setViewName("registrationError");
         registry.addViewController("/users").setViewName("users");
+        registry.addViewController("/tariffs").setViewName("tariffs");
     }
 
     @Override

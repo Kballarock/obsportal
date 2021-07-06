@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="~{/fragments/headTag :: copy}">
+    <meta charset="UTF-8">
+    <title id="pageTitle">[[#{common.tariffs}]]</title>
+</head>
+<body>
+<!-- ======= Header ======= -->
+<header th:insert="~{/fragments/header :: copy}"></header>
+
+<!-- ======= Main Section ======= -->
+<section id="hero" class="wow fadeIn" style="display: block; overflow: auto">
+    <div class="container">
+        <h3 class="text-center" th:text="#{common.tariffs}"></h3>
+        <hr style="margin-top: 2px"/>
+        <table class="table table-sm table-striped" id="datatable">
+            <thead>
+            <tr>
+                <th th:utext="#{tariff.name}"></th>
+                <th th:text="#{tariff.category}"></th>
+                <th th:text="#{tariff.price}"></th>
+                <th th:text="#{tariff.description}"></th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+        <hr/>
+    </div>
+</section>
+<!-- End Main Section -->
+
+<div class="modal fade" tabindex="-1" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="detailsForm">
+                    <input type="hidden" id="id" name="id">
+
+                    <div class="form-label-group">
+                        <label for="tariffName" th:text="#{tariff.name}"></label>
+                        <input type="text" id="tariffName" name="name" class="form-control" readonly="readonly">
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputCategory" th:text="#{tariff.category}"></label>
+                        <input type="email" id="inputCategory" name="category" class="form-control" readonly="readonly">
+                    </div>
+
+                    <div class="form-label-group">
+                        <label for="inputPrice" th:text="#{tariff.price}"></label>
+                        <input type="number" min="0" step="0.10" id="inputPrice" name="price" class="form-control"
+                               required>
+                    </div>
+
+                    <input type="hidden" id="description" name="description">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeNoty()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+                <button type="button" class="btn btn-success" onclick="save()">
+                    <span class="fa fa-check"></span>
+                    [[#{common.save}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<footer th:insert="~{/fragments/footer :: copy}"></footer>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- ======= Scripts ======= -->
+<div th:insert="~{/fragments/scriptTag :: copy}"></div>
+<script th:src="@{/resources/js/tariff.data.js}"></script>
+<div th:insert="~{/fragments/i18n :: copy}"></div>
+</body>
+</html>

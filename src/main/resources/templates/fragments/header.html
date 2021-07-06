@@ -13,8 +13,20 @@
                 <li><a th:href="@{login}" th:text="#{common.singIn.btn}" sec:authorize="anonymous"></a></li>
                 <li class="menu-active"><a th:href="@{registration}" th:text="#{common.singUp.btn}"
                                            sec:authorize="anonymous"></a></li>
-                <li><a th:href="@{users}" th:text="#{admin.users.link}"
-                       sec:authorize="hasAuthority('WRITE_PRIVILEGE')"></a></li>
+
+                <li class="menu-has-children" sec:authorize="hasAuthority('WRITE_PRIVILEGE')"><a
+                        th:text="#{common.manual}"></a>
+
+                    <ul id="users" style="width: 170px;">
+                        <li class="menu-has-children"><a th:text="#{admin.users.link}"></a>
+                            <ul>
+                                <li><a th:href="@{users}" th:text="#{common.userList}"></a></li>
+                                <li><a th:text="#{common.userRoles}"></a></li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{tariffs}" th:text="#{common.tariffs}"></a>
+                    </ul>
+                </li>
 
                 <li class="menu-has-children" sec:authorize="isAuthenticated()"><a><span class="fa fa-user"></span>&nbsp;</a>
 
@@ -23,14 +35,14 @@
                         </li>
 
                         <li>
-                            <a href="#" onclick="document.forms['logoutForm'].submit()"><span class="fa fa-sign-out"
-                                                                                              aria-hidden="true"></span>&nbsp;[[#{common.logout}]]</a>
+                            <a href="#" onclick="document.forms['logoutForm'].submit()">
+                                <span class="fa fa-sign-out" aria-hidden="true"></span>&nbsp;[[#{common.logout}]]</a>
+
                             <form id="logoutForm" th:action="@{/logout}" method='POST' th:hidden="logout">
                                 <input id="logout" hidden type="submit">
                             </form>
                         </li>
                     </ul>
-
                 </li>
 
                 <li class="menu-has-children"><a><span class="fa fa-language"></span>&nbsp;[[${#locale}]]</a>

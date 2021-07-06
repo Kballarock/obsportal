@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS users_roles;
 DROP TABLE IF EXISTS privilege;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS tariff;
 
 CREATE TABLE users
 (
@@ -80,3 +81,17 @@ CREATE TABLE password_reset_token
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
+
+CREATE TABLE tariff
+(
+  id          INTEGER AUTO_INCREMENT      PRIMARY KEY,
+  name        VARCHAR(160)                NOT NULL,
+  category    INTEGER                     NOT NULL,
+  u_min       INTEGER                     NOT NULL,
+  u_max       INTEGER                     NOT NULL,
+  price       DECIMAL(7, 2)               NOT NULL,
+  description VARCHAR(255)                NOT NULL
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  AUTO_INCREMENT = 1;

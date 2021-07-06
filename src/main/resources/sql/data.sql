@@ -2,6 +2,7 @@ DELETE FROM users WHERE id;
 DELETE FROM role WHERE id;
 DELETE FROM privilege WHERE id;
 DELETE FROM verification_token WHERE id;
+DELETE FROM tariff WHERE id;
 
 
 ALTER TABLE users AUTO_INCREMENT = 100000;
@@ -34,3 +35,11 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES
 ALTER TABLE verification_token AUTO_INCREMENT = 1;
 INSERT INTO verification_token (id, expiry_date, token, user_id) VALUES
 (1, '2020-05-21', '7d9aa6e7-ca35-4ac8-a218-da96e63a1a96', 100000);
+
+ALTER TABLE tariff AUTO_INCREMENT = 1;
+INSERT INTO tariff (name, category, u_min, u_max, price, description) VALUES
+('НДС', '1', '0', '0', '20.00', 'Налон на добавленную стоимость'),
+('ГО1', '2', '1', '9', '85.00', 'Тариф от 1 до 9 пользователей'),
+('ГО2', '2', '10', '19', '70.00', 'Тариф от 10 до 19 пользователей'),
+('ГО3', '2', '20', '49', '60.00', 'Тариф от 20 до 49 пользователей'),
+('ГО4', '2', '50', '1000', '45.00', 'Тариф более 50 полезователей');
