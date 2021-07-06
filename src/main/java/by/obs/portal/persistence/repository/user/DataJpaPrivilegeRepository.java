@@ -1,6 +1,6 @@
-package by.obs.portal.persistence.repository.datajpa;
+package by.obs.portal.persistence.repository.user;
 
-import by.obs.portal.persistence.model.Privilege;
+import by.obs.portal.persistence.model.user.Privilege;
 import by.obs.portal.persistence.repository.PrivilegeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

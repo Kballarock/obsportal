@@ -1,8 +1,8 @@
 package by.obs.portal.security.oath2;
 
-import by.obs.portal.persistence.model.AuthProvider;
-import by.obs.portal.persistence.model.Role;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.AuthProvider;
+import by.obs.portal.persistence.model.user.Role;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.persistence.repository.RoleRepository;
 import by.obs.portal.persistence.repository.UserRepository;
 import by.obs.portal.security.oath2.user.OAuth2UserInfo;

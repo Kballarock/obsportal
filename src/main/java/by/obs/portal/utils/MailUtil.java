@@ -1,7 +1,7 @@
 package by.obs.portal.utils;
 
-import by.obs.portal.persistence.model.User;
-import by.obs.portal.persistence.model.VerificationToken;
+import by.obs.portal.persistence.model.user.User;
+import by.obs.portal.persistence.model.user.VerificationToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;

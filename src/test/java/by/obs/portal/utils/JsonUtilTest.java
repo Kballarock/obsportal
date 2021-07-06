@@ -1,6 +1,6 @@
 package by.obs.portal.utils;
 
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.User;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

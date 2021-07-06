@@ -1,7 +1,7 @@
 package by.obs.portal.service;
 
-import by.obs.portal.persistence.model.AuthProvider;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.AuthProvider;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.utils.exception.NotFoundException;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

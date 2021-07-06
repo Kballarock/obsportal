@@ -1,4 +1,4 @@
-package by.obs.portal.persistence.model;
+package by.obs.portal.persistence.model.contracts;
 
 import by.obs.portal.persistence.model.base.AbstractNamedEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;

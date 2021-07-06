@@ -1,6 +1,6 @@
-package by.obs.portal.persistence.repository.datajpa;
+package by.obs.portal.persistence.repository.user;
 
-import by.obs.portal.persistence.model.VerificationToken;
+import by.obs.portal.persistence.model.user.VerificationToken;
 import by.obs.portal.persistence.repository.VerificationTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

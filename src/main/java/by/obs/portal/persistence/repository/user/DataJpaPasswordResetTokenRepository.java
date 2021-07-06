@@ -1,6 +1,6 @@
-package by.obs.portal.persistence.repository.datajpa;
+package by.obs.portal.persistence.repository.user;
 
-import by.obs.portal.persistence.model.PasswordResetToken;
+import by.obs.portal.persistence.model.user.PasswordResetToken;
 import by.obs.portal.persistence.repository.PasswordResetTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

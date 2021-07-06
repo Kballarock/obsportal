@@ -1,7 +1,7 @@
 package by.obs.portal.service;
 
-import by.obs.portal.persistence.model.PasswordResetToken;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.PasswordResetToken;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.persistence.repository.PasswordResetTokenRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

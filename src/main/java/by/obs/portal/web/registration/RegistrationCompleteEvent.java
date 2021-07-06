@@ -1,6 +1,6 @@
 package by.obs.portal.web.registration;
 
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.User;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.springframework.context.ApplicationEvent;

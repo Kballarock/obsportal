@@ -1,6 +1,6 @@
 package by.obs.portal.web.registration;
 
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.service.VerificationTokenService;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

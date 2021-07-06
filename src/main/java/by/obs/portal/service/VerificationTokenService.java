@@ -1,7 +1,7 @@
 package by.obs.portal.service;
 
-import by.obs.portal.persistence.model.User;
-import by.obs.portal.persistence.model.VerificationToken;
+import by.obs.portal.persistence.model.user.User;
+import by.obs.portal.persistence.model.user.VerificationToken;
 import by.obs.portal.persistence.repository.UserRepository;
 import by.obs.portal.persistence.repository.VerificationTokenRepository;
 import by.obs.portal.utils.exception.NotFoundException;

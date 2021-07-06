@@ -1,6 +1,6 @@
 package by.obs.portal.security.oath2.user;
 
-import by.obs.portal.persistence.model.AuthProvider;
+import by.obs.portal.persistence.model.user.AuthProvider;
 import by.obs.portal.utils.exception.OAuth2AuthenticationProcessingException;
 
 import java.util.Map;

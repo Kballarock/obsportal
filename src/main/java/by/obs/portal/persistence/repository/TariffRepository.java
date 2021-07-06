@@ -1,6 +1,6 @@
 package by.obs.portal.persistence.repository;
 
-import by.obs.portal.persistence.model.Tariff;
+import by.obs.portal.persistence.model.contracts.Tariff;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package by.obs.portal.persistence.repository;
 
-import by.obs.portal.persistence.model.PasswordResetToken;
+import by.obs.portal.persistence.model.user.PasswordResetToken;
 
 public interface PasswordResetTokenRepository {
 

@@ -1,6 +1,6 @@
-package by.obs.portal.persistence.repository.datajpa;
+package by.obs.portal.persistence.repository.user;
 
-import by.obs.portal.persistence.model.Role;
+import by.obs.portal.persistence.model.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 

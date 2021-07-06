@@ -1,4 +1,4 @@
-package by.obs.portal.persistence.model;
+package by.obs.portal.persistence.model.user;
 
 import by.obs.portal.common.Constants;
 import by.obs.portal.persistence.model.base.AbstractNamedEntity;

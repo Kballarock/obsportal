@@ -1,7 +1,7 @@
 package by.obs.portal.web.controller.user;
 
-import by.obs.portal.persistence.model.AuthProvider;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.AuthProvider;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.service.UserService;
 import by.obs.portal.testdata.UserTestData;
 import by.obs.portal.utils.TestUtil;

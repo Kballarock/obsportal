@@ -1,6 +1,6 @@
 package by.obs.portal.persistence.repository;
 
-import by.obs.portal.persistence.model.VerificationToken;
+import by.obs.portal.persistence.model.user.VerificationToken;
 
 public interface VerificationTokenRepository {
 

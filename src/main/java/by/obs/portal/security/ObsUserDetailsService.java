@@ -1,7 +1,7 @@
 package by.obs.portal.security;
 
-import by.obs.portal.persistence.model.Privilege;
-import by.obs.portal.persistence.model.Role;
+import by.obs.portal.persistence.model.user.Privilege;
+import by.obs.portal.persistence.model.user.Role;
 import by.obs.portal.persistence.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;

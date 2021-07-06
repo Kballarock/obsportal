@@ -1,9 +1,9 @@
 package by.obs.portal.testdata;
 
-import by.obs.portal.persistence.model.AuthProvider;
+import by.obs.portal.persistence.model.user.AuthProvider;
 import by.obs.portal.utils.TestMatchers;
-import by.obs.portal.persistence.model.Role;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.Role;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.web.dto.UserDto;
 
 import java.util.*;

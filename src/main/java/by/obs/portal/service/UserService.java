@@ -1,6 +1,6 @@
 package by.obs.portal.service;
 
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.persistence.repository.UserRepository;
 import by.obs.portal.utils.user.UserUtil;
 import by.obs.portal.web.dto.UserDto;

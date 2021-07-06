@@ -1,6 +1,6 @@
 package by.obs.portal.web.controller.contract;
 
-import by.obs.portal.persistence.model.Tariff;
+import by.obs.portal.persistence.model.contracts.Tariff;
 import by.obs.portal.service.TariffService;
 import by.obs.portal.validation.view.ErrorSequence;
 import lombok.AccessLevel;

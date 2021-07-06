@@ -1,6 +1,6 @@
 package by.obs.portal.service;
 
-import by.obs.portal.persistence.model.Tariff;
+import by.obs.portal.persistence.model.contracts.Tariff;
 import by.obs.portal.persistence.repository.TariffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

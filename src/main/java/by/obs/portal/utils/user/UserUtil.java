@@ -1,8 +1,8 @@
 package by.obs.portal.utils.user;
 
-import by.obs.portal.persistence.model.AuthProvider;
-import by.obs.portal.persistence.model.Role;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.AuthProvider;
+import by.obs.portal.persistence.model.user.Role;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.persistence.repository.RoleRepository;
 import by.obs.portal.web.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;

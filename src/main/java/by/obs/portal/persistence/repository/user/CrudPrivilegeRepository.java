@@ -1,6 +1,6 @@
-package by.obs.portal.persistence.repository.datajpa;
+package by.obs.portal.persistence.repository.user;
 
-import by.obs.portal.persistence.model.Privilege;
+import by.obs.portal.persistence.model.user.Privilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CrudPrivilegeRepository extends JpaRepository<Privilege, Integer> {

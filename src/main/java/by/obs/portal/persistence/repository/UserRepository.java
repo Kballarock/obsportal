@@ -1,6 +1,6 @@
 package by.obs.portal.persistence.repository;
 
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.User;
 
 import java.util.List;
 

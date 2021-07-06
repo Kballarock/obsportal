@@ -1,6 +1,6 @@
 package by.obs.portal.persistence.repository;
 
-import by.obs.portal.persistence.model.Role;
+import by.obs.portal.persistence.model.user.Role;
 
 public interface RoleRepository {
 

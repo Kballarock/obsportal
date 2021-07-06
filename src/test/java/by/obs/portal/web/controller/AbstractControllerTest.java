@@ -1,7 +1,7 @@
 package by.obs.portal.web.controller;
 
 import by.obs.portal.utils.TimingExtension;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.utils.exception.ErrorType;
 import by.obs.portal.utils.exception.MessageUtil;
 import by.obs.portal.utils.JsonUtil;

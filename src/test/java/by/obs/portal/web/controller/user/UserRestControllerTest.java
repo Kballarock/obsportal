@@ -1,8 +1,8 @@
 package by.obs.portal.web.controller.user;
 
-import by.obs.portal.persistence.model.PasswordResetToken;
-import by.obs.portal.persistence.model.User;
-import by.obs.portal.persistence.model.VerificationToken;
+import by.obs.portal.persistence.model.user.PasswordResetToken;
+import by.obs.portal.persistence.model.user.User;
+import by.obs.portal.persistence.model.user.VerificationToken;
 import by.obs.portal.persistence.repository.PasswordResetTokenRepository;
 import by.obs.portal.persistence.repository.VerificationTokenRepository;
 import by.obs.portal.service.PasswordResetTokenService;

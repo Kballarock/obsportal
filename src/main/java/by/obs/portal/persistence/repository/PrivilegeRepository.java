@@ -1,6 +1,6 @@
 package by.obs.portal.persistence.repository;
 
-import by.obs.portal.persistence.model.Privilege;
+import by.obs.portal.persistence.model.user.Privilege;
 
 public interface PrivilegeRepository {
 

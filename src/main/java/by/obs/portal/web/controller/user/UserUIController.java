@@ -1,6 +1,6 @@
 package by.obs.portal.web.controller.user;
 
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.security.ObsUserDetailsService;
 import by.obs.portal.service.PasswordResetTokenService;
 import by.obs.portal.service.UserService;

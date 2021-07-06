@@ -1,6 +1,6 @@
 package by.obs.portal.web.controller.contract;
 
-import by.obs.portal.persistence.model.Tariff;
+import by.obs.portal.persistence.model.contracts.Tariff;
 import by.obs.portal.service.TariffService;
 import by.obs.portal.validation.view.ErrorSequence;
 import lombok.AccessLevel;
@@ -33,14 +33,9 @@ public class TariffRestController {
         return tariffService.getAll();
     }
 
-    @GetMapping
+    @GetMapping(value = "/{id}")
     public Tariff get(@PathVariable int id) {
         return tariffService.get(id);
-    }
-
-    @PostMapping
-    public void update(@Validated(ErrorSequence.class) Tariff tariff) {
-        tariffService.update(tariff);
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)

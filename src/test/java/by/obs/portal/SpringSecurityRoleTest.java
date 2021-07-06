@@ -1,8 +1,8 @@
 package by.obs.portal;
 
-import by.obs.portal.persistence.model.Privilege;
-import by.obs.portal.persistence.model.Role;
-import by.obs.portal.persistence.model.User;
+import by.obs.portal.persistence.model.user.Privilege;
+import by.obs.portal.persistence.model.user.Role;
+import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.persistence.repository.PrivilegeRepository;
 import by.obs.portal.persistence.repository.RoleRepository;
 import by.obs.portal.service.UserService;
