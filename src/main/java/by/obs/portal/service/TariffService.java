@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static by.obs.portal.utils.ValidationUtil.checkNotFoundWithId;
+
 @Service
 public class TariffService {
 
@@ -26,7 +28,7 @@ public class TariffService {
     }
 
     public Tariff get(int id) {
-        return tariffRepository.get(id);
+        return checkNotFoundWithId(tariffRepository.get(id), id);
     }
 
     public double getReportGeneratorPrice(int usersAmount) {

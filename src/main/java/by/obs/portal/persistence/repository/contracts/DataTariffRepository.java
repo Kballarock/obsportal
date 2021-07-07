@@ -3,6 +3,7 @@ package by.obs.portal.persistence.repository.contracts;
 import by.obs.portal.persistence.model.contracts.Tariff;
 import by.obs.portal.persistence.repository.TariffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Repository
 public class DataTariffRepository implements TariffRepository {
 
+    private static final Sort SORT_CATEGORY = Sort.by(Sort.Direction.ASC, "category");
     private final CrudTariffRepository tariffRepository;
 
     @Autowired
@@ -24,7 +26,7 @@ public class DataTariffRepository implements TariffRepository {
 
     @Override
     public List<Tariff> getAll() {
-        return tariffRepository.findAll();
+        return tariffRepository.findAll(SORT_CATEGORY);
     }
 
     @Override
