@@ -1,5 +1,6 @@
 package by.obs.portal.persistence.model.base;
 
+import by.obs.portal.validation.view.ErrorSequence;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 @SuperBuilder(toBuilder = true)
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
-    @NotBlank
+    @NotBlank(message = "{abstractNamedEntity.NotBlank.name}", groups = ErrorSequence.First.class)
     private String name;
 
     protected AbstractNamedEntity(String name) {

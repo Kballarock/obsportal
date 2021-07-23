@@ -1,6 +1,7 @@
 package by.obs.portal.persistence.model.contracts;
 
 import by.obs.portal.persistence.model.base.AbstractNamedEntity;
+import by.obs.portal.validation.view.ErrorSequence;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -22,22 +23,22 @@ public class Tariff extends AbstractNamedEntity {
 
     @NotNull
     @Column(name = "category", nullable = false)
-    int category;
+    Integer category;
 
     @NotNull
     @JsonIgnore
     @Column(name = "u_min", nullable = false)
-    int minUsers;
+    Integer minUsers;
 
     @NotNull
     @JsonIgnore
     @Column(name = "u_max", nullable = false)
-    int maxUsers;
+    Integer maxUsers;
 
-    @NotNull
-    @DecimalMin(value = "0.01", message = "{tariff.price.decimalMin}")
+    @NotNull(message = "{tariff.price.notNull}", groups = ErrorSequence.First.class)
+    @DecimalMin(value = "0.01", message = "{tariff.price.decimalMin}", groups = ErrorSequence.Second.class)
     @Column(name = "price", nullable = false)
-    double price;
+    Double price;
 
     @NotEmpty
     @Column(name = "description", nullable = false)

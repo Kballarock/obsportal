@@ -3,7 +3,7 @@ DELETE FROM role WHERE id;
 DELETE FROM privilege WHERE id;
 DELETE FROM verification_token WHERE id;
 DELETE FROM tariff WHERE id;
-
+DELETE FROM report_generator WHERE id;
 
 ALTER TABLE users AUTO_INCREMENT = 100000;
 INSERT INTO users (name, email, password, registered, enabled, provider, provider_id) VALUES
@@ -43,3 +43,14 @@ INSERT INTO tariff (name, category, u_min, u_max, price, description) VALUES
 ('ГО2', '2', '10', '19', '70.00', 'Тариф от 10 до 19 пользователей'),
 ('ГО3', '2', '20', '49', '60.00', 'Тариф от 20 до 49 пользователей'),
 ('ГО4', '2', '50', '1000', '45.00', 'Тариф более 50 полезователей');
+
+ALTER TABLE report_generator AUTO_INCREMENT = 1;
+INSERT INTO report_generator (name, c_type, c_number, c_date, unp, users_amount) VALUES
+('Солигорскводоканал', '6ГО', 112, '2020-05-21', 123456789, 5),
+('Витебскводоканал', '2ГО', 163, '2020-05-21', 987654321, 10);
+
+ALTER TABLE report_generator AUTO_INCREMENT = 1;
+INSERT INTO rep_gen_email (email, rep_gen_id) VALUES
+('sol@sol.by', 1),
+('solig@solig.by', 1),
+('vit@vit.by', 2);

@@ -262,7 +262,7 @@ public class UserUIController {
 
         final var authUser = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        if (!userService.validOldPassword(authUser, passwordDto.getOldPassword())) {
+        if (userService.validOldPassword(authUser, passwordDto.getOldPassword())) {
             redirectAttributes.addFlashAttribute("message",
                     messages.getMessage("message.updatePasswordError", null, LocaleContextHolder.getLocale()));
             return "redirect:/profile/editPassword";

@@ -3,27 +3,25 @@
 <div th:fragment="copy">
 
     <!-- Webjars CSS -->
-    <link rel="stylesheet" th:href="@{webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css}">
-    <link rel="stylesheet" th:href="@{webjars/datatables/1.10.24/css/dataTables.bootstrap4.min.css}">
-    <link rel="stylesheet" th:href="@{webjars/noty/3.1.4/lib/noty.css}"/>
-    <link rel="stylesheet" th:href="@{webjars/datetimepicker/2.5.20/jquery.datetimepicker.css}">
+    <link rel="stylesheet" href="webjars/datatables/1.10.24/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/demo/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="webjars/noty/3.1.4/lib/noty.css"/>
+    <link rel="stylesheet" href="webjars/datetimepicker/2.5.20/jquery.datetimepicker.css">
+    <link rel="stylesheet" href="webjars/bootstrap-table/1.17.1/src/bootstrap-table.scss">
 
     <!-- Webjars JS -->
-    <script type="text/javascript" th:src="@{webjars/jquery/3.6.0/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{webjars/datatables/1.10.24/js/jquery.dataTables.min.js}"></script>
-    <script type="text/javascript" th:src="@{webjars/datatables/1.10.24/js/dataTables.bootstrap4.min.js}" defer></script>
-    <script type="text/javascript" th:src="@{webjars/noty/3.1.4/lib/noty.min.js}" defer></script>
-    <script type="text/javascript" th:src="@{webjars/datetimepicker/2.5.20/build/jquery.datetimepicker.full.min.js}" defer></script>
+    <script type="text/javascript" src="webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/datatables/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="webjars/datatables/1.10.24/js/dataTables.bootstrap4.min.js" defer></script>
+    <script type="text/javascript" src="webjars/noty/3.1.4/lib/noty.min.js" defer></script>
+    <script type="text/javascript" src="webjars/datetimepicker/2.5.20/build/jquery.datetimepicker.full.min.js" defer></script>
+    <script type="module" src="webjars/bootstrap-table/1.17.1/src/bootstrap-table.js" defer></script>
 
     <!-- Vendor JS Files -->
     <script th:src="@{/resources/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
     <script th:src="@{/resources/vendor/jquery.easing/jquery.easing.min.js}"></script>
-    <script th:src="@{/resources/vendor/php-email-form/validate.js}"></script>
     <script th:src="@{/resources/vendor/wow/wow.min.js}"></script>
-    <script th:src="@{/resources/vendor/modal-video/js/modal-video.min.js}"></script>
-    <script th:src="@{/resources/vendor/owl.carousel/owl.carousel.min.js}"></script>
     <script th:src="@{/resources/vendor/superfish/superfish.min.js}"></script>
-    <script th:src="@{/resources/vendor/hoverIntent/hoverIntent.js}"></script>
 
     <!-- Template Main JS File -->
     <script th:src="@{/resources/js/main.js}"></script>

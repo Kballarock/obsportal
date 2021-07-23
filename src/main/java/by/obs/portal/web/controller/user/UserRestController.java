@@ -191,7 +191,7 @@ public class UserRestController {
 
         final var user = userService.getByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 
-        if (!userService.validOldPassword(user, updatePasswordDto.getOldPassword())) {
+        if (userService.validOldPassword(user, updatePasswordDto.getOldPassword())) {
             return new ResponseEntity<>(
                     messages.getMessage("message.updatePasswordError", null, LocaleContextHolder.getLocale()),
                     HttpStatus.UNPROCESSABLE_ENTITY);

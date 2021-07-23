@@ -117,7 +117,7 @@ function failNoty(jqXHR) {
     closeNoty();
     var errorInfo = JSON.parse(jqXHR.responseText);
     failedNote = new Noty({
-        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + errorInfo.details.join("<br>"),
+        text: "<span class='fa fa-lg fa-exclamation-circle'></span> &nbsp;" + errorInfo.typeMessage + "<br>" + '-&nbsp;' + errorInfo.details.join("<br>" + '-&nbsp;'),
         type: "error",
         layout: "bottomRight",
         timeout: 10000
@@ -127,13 +127,13 @@ function failNoty(jqXHR) {
 function renderEditBtn(data, type, row) {
     if (type === "display") {
         return '<button title="' + user_edit_msg + '" onclick="updateRow(' + row.id + ')" class="btn1 rounded" ' +
-            'style="background-color: #f3ad05;"><i class="fa fa-edit"></i></button>';
+            'style="background-color: #f3ad05;margin-right: -4px;width: 28px"><i class="fa fa-edit"></i></button>';
     }
 }
 
 function renderDeleteBtn(data, type, row) {
     if (type === "display") {
         return '<button title="' + user_delete_msg + '" onclick="deleteRow(' + row.id + ')" class="btn1 rounded" ' +
-            'style="background-color: #f30018; margin-left: -10px"><i class="fa fa-trash"></i></button>';
+            'style="background-color: #f30018; margin-left: -14px;width: 28px"><i class="fa fa-trash"></i></button>';
     }
 }

@@ -1493,6 +1493,10 @@ tr[data-userEnabled="false"] {
   color: #f30018;
 }
 
+.table-condensed{
+  font-size: 14px;
+}
+
 /*--------------------------------------------------------------
 # loading
 --------------------------------------------------------------*/
@@ -1507,4 +1511,9 @@ tr[data-userEnabled="false"] {
   background-color: #fff;
   z-index: 99;
   text-align: center;
+}
+
+.input-group-form{
+  margin-top: -10px;
+  margin-bottom: 5px;
 }

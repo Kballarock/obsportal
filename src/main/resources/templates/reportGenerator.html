@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head th:insert="~{/fragments/headTag :: copy}">
+    <meta charset="UTF-8">
+    <title id="pageTitle">[[#{title.reportGenerator}]]</title>
+</head>
+<body>
+<!-- ======= Header ======= -->
+<header th:insert="~{/fragments/header :: copy}"></header>
+
+<section id="hero" class="wow fadeIn" style="display: block; overflow: auto">
+    <div class="container">
+        <h3 class="text-center" th:text="#{title.reportGenerator}"></h3>
+        <button th:title="#{common.add}" onclick="add()" class="btn1 rounded" style="width: 28px">
+            <i class="fa fa-plus"></i></button>
+        <hr style="margin-top: 2px"/>
+        <table class="table table-sm table-striped table-condensed" id="datatable">
+            <thead>
+            <tr>
+                <th th:utext="#{rg.name}"></th>
+                <th th:text="#{rg.contractType}"></th>
+                <th th:text="#{rg.contractNumber}"></th>
+                <th th:text="#{rg.contractDate}"></th>
+                <th th:text="#{rg.unp}"></th>
+                <th th:text="#{rg.usersAmount}"></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+        </table>
+        <hr/>
+    </div>
+</section>
+<!-- End Main Section -->
+
+<div class="modal fade" tabindex="-1" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="detailsForm" class="container was-validated" novalidate="">
+                    <input type="hidden" id="id" name="id">
+
+                    <label for="inputName" th:text="#{rg.name}"></label>
+                    <input type="text" id="inputName" name="name" class="form-control input-group-form" required>
+
+                    <label for="inputContractType" th:text="#{rg.contractType}"></label>
+                    <input type="text" id="inputContractType" name="contractType" class="form-control input-group-form"
+                           required>
+
+                    <label for="inputContractNumber" th:text="#{rg.contractNumber}"></label>
+                    <input type="number" oninput="this.value|=0" min="1" step="1" id="inputContractNumber"
+                           name="contractNumber"
+                           class="form-control input-group-form" required>
+
+                    <label for="inputContractDate" th:text="#{rg.contractDate}"></label>
+                    <input type="date" id="inputContractDate" name="contractDate" class="form-control input-group-form"
+                           required>
+
+                    <label for="inputUnp" th:text="#{rg.unp}"></label>
+                    <input type="number" min="1" step="1" id="inputUnp" name="unp" class="form-control input-group-form"
+                           required>
+
+                    <label for="inputUsersAmount" th:text="#{rg.usersAmount}"></label>
+                    <input type="number" min="1" step="1" id="inputUsersAmount" name="usersAmount"
+                           class="form-control input-group-form"
+                           required>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="save()">
+                    <span class="fa fa-check"></span>
+                    [[#{common.save}]]
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeNoty()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" id="orgEmailList" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="orgEmailListTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        onclick="closeNoty();destroyDataTable()">&times;
+                </button>
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">
+                <table class="table table-sm table-bordered table-condensed" id="datatable2">
+                    <thead>
+                    <tr>
+                        <th data-visible="false" data-field="id" id="dataId"></th>
+                        <th data-field="email" data-sortable="true" th:text="#{common.email}"></th>
+                        <th class="text-center" th:text="#{common.edit}"></th>
+                        <th class="text-center" th:text="#{common.delete}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="addEmailRow();">
+                    <span class="fa fa-plus"></span>
+                    [[#{common.add}]]
+                </button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger"
+                        onclick="closeNoty();destroyDataTable()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" tabindex="1" id="emailModal" data-bs-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="emailModalTitle1"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        onclick="closeNoty();orgEmailModalShow()">&times;
+                </button>
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">
+                <form id="emailForm">
+                    <input type="hidden" id="idEmail" name="id">
+
+                    <div class="form-label-group">
+                        <label for="inputOrgEmail" th:text="#{common.email}"></label>
+                        <input type="email" id="inputOrgEmail" name="email" class="form-control" required autofocus>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-success" onclick="saveEmail();">
+                    <span class="fa fa-check"></span>
+                    [[#{common.save}]]
+                </button>
+                <button type="button" id="emailModalClose" class="btn btn-danger" data-dismiss="modal"
+                        onclick="closeNoty();orgEmailModalShow()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<footer th:insert="~{/fragments/footer :: copy}"></footer>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!-- ======= Scripts ======= -->
+<div th:insert="~{/fragments/scriptTag :: copy}"></div>
+<script th:src="@{/resources/js/reportGenerator.data.js}"></script>
+<script th:src="@{/resources/js/mail.data.js}"></script>
+<div th:insert="~{/fragments/i18n :: copy}"></div>
+</body>
+</html>

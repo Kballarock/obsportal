@@ -11,9 +11,11 @@
 <section id="hero" class="wow fadeIn" style="display: block; overflow: auto">
     <div class="container">
         <h3 class="text-center" th:text="#{title.users}"></h3>
-        <button th:title="#{common.add}" onclick="add()" class="btn1 rounded"><i class="fa fa-plus"></i></button>
+        <button th:title="#{common.add}" onclick="add()" class="btn1 rounded" style="width: 28px">
+            <i class="fa fa-plus"></i>
+        </button>
         <hr style="margin-top: 2px"/>
-        <table class="table table-sm table-striped" id="datatable">
+        <table class="table table-sm table-striped  table-condensed" id="datatable">
             <thead>
             <tr>
                 <th th:utext="#{user.name}"></th>
@@ -39,40 +41,32 @@
                 <button type="button" class="close" data-dismiss="modal" onclick="closeNoty()">&times;</button>
             </div>
             <div class="modal-body">
-                <form id="detailsForm">
+                <form id="detailsForm" class="container was-validated" novalidate="">
                     <input type="hidden" id="id" name="id">
 
-                    <div class="form-label-group">
-                        <label for="inputName" th:text="#{common.name}"></label>
-                        <input type="text" id="inputName" name="name" class="form-control" required autofocus>
-                    </div>
+                    <label for="inputName" th:text="#{common.name}"></label>
+                    <input type="text" id="inputName" name="name" class="form-control input-group-form" required>
 
-                    <div class="form-label-group">
-                        <label for="inputEmail" th:text="#{common.email}"></label>
-                        <input type="email" id="inputEmail" name="email" class="form-control" required>
-                    </div>
+                    <label for="inputEmail" th:text="#{common.email}"></label>
+                    <input type="email" id="inputEmail" name="email" class="form-control input-group-form" required>
 
-                    <div class="form-label-group">
-                        <label for="inputPassword" th:text="#{common.password}"></label>
-                        <input type="password" id="inputPassword" name="password" class="form-control" required>
-                    </div>
+                    <label for="inputPassword" th:text="#{common.password}"></label>
+                    <input type="password" id="inputPassword" name="password" class="form-control input-group-form"
+                           required>
 
-                    <div class="form-label-group">
-                        <label for="confirmPassword" th:text="#{registration.confirmPassword.input}"></label>
-                        <input type="password" id="confirmPassword" name="matchingPassword" class="form-control"
-                               required>
-                    </div>
-
+                    <label for="confirmPassword" th:text="#{registration.confirmPassword.input}"></label>
+                    <input type="password" id="confirmPassword" name="matchingPassword"
+                           class="form-control input-group-form" required>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeNoty()">
-                    <span class="fa fa-close"></span>
-                    [[#{common.cancel}]]
-                </button>
                 <button type="button" class="btn btn-success" onclick="save()">
                     <span class="fa fa-check"></span>
                     [[#{common.save}]]
+                </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeNoty()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
                 </button>
             </div>
         </div>

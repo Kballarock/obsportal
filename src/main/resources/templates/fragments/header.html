@@ -15,6 +15,15 @@
                                            sec:authorize="anonymous"></a></li>
 
                 <li class="menu-has-children" sec:authorize="hasAuthority('WRITE_PRIVILEGE')"><a
+                        th:text="#{common.contract}"></a>
+
+                    <ul id="contract" style="width: 170px;">
+                        <li><a th:href="@{reportGenerator}" th:text="#{title.reportGenerator}"></a></li>
+                        <li><a th:text="#{title.oneWindow}"></a>
+                    </ul>
+                </li>
+
+                <li class="menu-has-children" sec:authorize="hasAuthority('WRITE_PRIVILEGE')"><a
                         th:text="#{common.manual}"></a>
 
                     <ul id="users" style="width: 170px;">

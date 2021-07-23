@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS privilege;
 DROP TABLE IF EXISTS role;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS tariff;
+DROP TABLE IF EXISTS rep_gen_email;
+DROP TABLE IF EXISTS report_generator;
 
 CREATE TABLE users
 (
@@ -91,6 +93,31 @@ CREATE TABLE tariff
   u_max       INTEGER                     NOT NULL,
   price       DECIMAL(7, 2)               NOT NULL,
   description VARCHAR(255)                NOT NULL
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  AUTO_INCREMENT = 1;
+
+CREATE TABLE report_generator
+(
+  id           INTEGER AUTO_INCREMENT      PRIMARY KEY,
+  name         VARCHAR(255)                NOT NULL,
+  c_type       VARCHAR(10)                 NOT NULL,
+  c_number     INTEGER                     NOT NULL,
+  c_date       DATETIME                    NOT NULL,
+  unp          INTEGER                     NOT NULL,
+  users_amount INTEGER                     NOT NULL
+)
+  ENGINE = InnoDB
+  DEFAULT CHARSET = utf8
+  AUTO_INCREMENT = 1;
+
+CREATE TABLE rep_gen_email
+(
+  id           INTEGER AUTO_INCREMENT      PRIMARY KEY,
+  email        VARCHAR(200)                NOT NULL,
+  rep_gen_id   INTEGER                     NOT NULL,
+  FOREIGN KEY (rep_gen_id) REFERENCES report_generator (id) ON DELETE CASCADE
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8

@@ -80,7 +80,7 @@ public class UserService {
     }
 
     public boolean validOldPassword(final User user, final String oldPassword) {
-        return passwordEncoder.matches(oldPassword, user.getPassword());
+        return !passwordEncoder.matches(oldPassword, user.getPassword());
     }
 
     private User prepareAndSave(User user) {
