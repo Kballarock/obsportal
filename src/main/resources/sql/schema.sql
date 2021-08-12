@@ -34,6 +34,8 @@ CREATE TABLE role
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+CREATE UNIQUE INDEX users_role_idx ON role (name);
+
 CREATE TABLE privilege
 (
   id        INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -47,7 +49,7 @@ CREATE TABLE users_roles
   user_id   INTEGER NOT NULL,
   role_id   INTEGER NOT NULL,
   FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
-  FOREIGN KEY (role_id) REFERENCES role (id)
+  FOREIGN KEY (role_id) REFERENCES role (id) ON DELETE CASCADE
 )
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
@@ -122,3 +124,4 @@ CREATE TABLE rep_gen_email
   ENGINE = InnoDB
   DEFAULT CHARSET = utf8
   AUTO_INCREMENT = 1;
+CREATE UNIQUE INDEX report_generator_email_idx ON rep_gen_email (email);

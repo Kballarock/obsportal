@@ -11,8 +11,13 @@
 <section id="hero" class="wow fadeIn" style="display: block; overflow: auto">
     <div class="container">
         <h3 class="text-center" th:text="#{title.users}"></h3>
+        <hr style="margin-bottom: 2px"/>
         <button th:title="#{common.add}" onclick="add()" class="btn1 rounded" style="width: 28px">
             <i class="fa fa-plus"></i>
+        </button>
+        <button id="showUserRoles" th:title="#{common.userRoles}" onclick="showUserRolesList()" class="btn1 rounded"
+                style="width: 28px;">
+            <i class="fa fa-arrows-alt"></i>
         </button>
         <hr style="margin-top: 2px"/>
         <table class="table table-sm table-striped  table-condensed" id="datatable">
@@ -26,6 +31,7 @@
                 <th th:text="#{user.roles}"></th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
         </table>
@@ -33,7 +39,7 @@
     </div>
 </section><!-- End Main Section -->
 
-<div class="modal fade" tabindex="-1" id="editRow">
+<div class="modal" id="editRow">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,6 +79,169 @@
     </div>
 </div>
 
+<div class="modal" id="userRoles" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="userRoleTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        onclick="closeNoty();destroyUserRolesList()">&times;
+                </button>
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">
+                <table class="table table-sm table-bordered table-condensed" id="userRolesList">
+                    <thead>
+                    <tr>
+                        <th data-visible="false" data-field="id" id="dataId"></th>
+                        <th data-field="name" data-sortable="true" th:text="#{user.msg.role}"></th>
+                        <th class="text-center" th:text="#{common.privilege}"></th>
+                        <th class="text-center" th:text="#{common.edit}"></th>
+                        <th class="text-center" th:text="#{common.delete}"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-bs-dismiss="modal" class="btn btn-success" onclick="addRoleRow();">
+                    <span class="fa fa-plus"></span>
+                    [[#{common.add}]]
+                </button>
+                <button type="button" data-dismiss="modal" class="btn btn-danger"
+                        onclick="closeNoty();destroyUserRolesList()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="addUserRole" data-bs-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addUserRoleTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        onclick="closeNoty();roleModalShow()">&times;
+                </button>
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">
+                <form id="roleForm" class="container was-validated" novalidate="">
+                    <input type="hidden" id="idRole" name="id">
+
+                    <div class="form-label-group">
+                        <label for="inputRole" th:text="#{user.msg.role}"></label>
+                        <input type="text" id="inputRole" name="name" class="form-control input-group-form" required
+                               style="text-transform:uppercase">
+                    </div>
+
+                    <div class="alert alert-arrow alert-arrow-primary d-flex rounded p-0 text-center" role="alert">
+                        <div class="alert-icon d-flex justify-content-center align-items-center text-white flex-grow-0 flex-shrink-0">
+                            <i class="fa fa-info"></i>
+                        </div>
+                        <div class="d-flex align-items-center py-2 pl-4 pr-3" th:text="#{message.role.add}">
+                            Info
+                        </div>
+                        <a href="#" class="close d-flex ml-auto justify-content-center align-items-center px-3"
+                           data-dismiss="alert">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="saveRole();">
+                    <span class="fa fa-check"></span>
+                    [[#{common.save}]]
+                </button>
+                <button type="button" id="roleModalClose" class="btn btn-danger" data-dismiss="modal"
+                        onclick="closeNoty();roleModalShow()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="userPrivilege">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="userPrivilegeTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        onclick="closeNoty();privilegeModalHide()">&times;
+                </button>
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">
+                <form id="privilegeForm">
+                    <input id="privilege1" type="checkbox" value="1" onchange="enableUserPrivilege(this)">&nbsp;
+                    <label for="privilege1" th:text="#{privilege.read}"></label><br/>
+                    <input id="privilege2" type="checkbox" value="2" onchange="enableUserPrivilege(this)">&nbsp;
+                    <label for="privilege2" th:text="#{privilege.write}"></label><br/>
+                    <input id="privilege3" type="checkbox" value="3" onchange="enableUserPrivilege(this)">&nbsp;
+                    <label for="privilege3" th:text="#{privilege.passwordChange}"></label><br/>
+                    <input id="privilege4" type="checkbox" value="4" onclick="enableUserPrivilege(this)">&nbsp;
+                    <label for="privilege4" th:text="#{privilege.rp}"></label><br/>
+                    <input id="privilege5" type="checkbox" value="5" onclick="enableUserPrivilege(this)">&nbsp;
+                    <label for="privilege5" th:text="#{privilege.oo}"></label><br/>
+                    <input id="privilege6" type="checkbox" value="6" onclick="enableUserPrivilege(this)">&nbsp;
+                    <label for="privilege6" th:text="#{privilege.n}"></label><br/>
+                    <input id="privilege7" type="checkbox" value="7" onclick="enableUserPrivilege(this)">&nbsp;
+                    <label for="privilege7" th:text="#{privilege.c}"></label>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="userPrivilegeModalClose" class="btn btn-danger" data-dismiss="modal"
+                        onclick="closeNoty();privilegeModalHide()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="roles" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="rolesTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        onclick="closeNoty();destroyUserRoles()">&times;
+                </button>
+            </div>
+            <div class="container"></div>
+            <div class="modal-body">
+                <table class="table table-sm table-bordered table-condensed" id="uRoles">
+                    <thead>
+                    <tr>
+                        <th data-visible="false" data-field="id" id="roleId"></th>
+                        <th data-field="name" data-sortable="true" th:text="#{user.msg.role}"></th>
+                        <th class="text-center"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger"
+                        onclick="closeNoty();destroyUserRoles()">
+                    <span class="fa fa-close"></span>
+                    [[#{common.cancel}]]
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- ======= Footer ======= -->
 <footer th:insert="~{/fragments/footer :: copy}"></footer>
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -80,6 +249,7 @@
 <!-- ======= Scripts ======= -->
 <div th:insert="~{/fragments/scriptTag :: copy}"></div>
 <script th:src="@{/resources/js/user.data.js}"></script>
+<script th:src="@{/resources/js/role.data.js}"></script>
 <div th:insert="~{/fragments/i18n :: copy}"></div>
 </body>
 </html>

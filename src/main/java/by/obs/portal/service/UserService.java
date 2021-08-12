@@ -1,6 +1,8 @@
 package by.obs.portal.service;
 
+import by.obs.portal.persistence.model.user.Role;
 import by.obs.portal.persistence.model.user.User;
+import by.obs.portal.persistence.repository.RoleRepository;
 import by.obs.portal.persistence.repository.UserRepository;
 import by.obs.portal.utils.user.UserUtil;
 import by.obs.portal.web.dto.UserDto;
@@ -24,11 +26,15 @@ public class UserService {
 
     UserRepository userRepository;
     BCryptPasswordEncoder passwordEncoder;
+    RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserService(UserRepository userRepository,
+                       BCryptPasswordEncoder bCryptPasswordEncoder,
+                       RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = bCryptPasswordEncoder;
+        this.roleRepository = roleRepository;
     }
 
     public User create(final User user) {
@@ -76,6 +82,27 @@ public class UserService {
 
     public void updatePassword(final User user, final String password) {
         user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+    }
+
+    public Set<Role> getUserRolesById(int userId) {
+        return userRepository.get(userId).getRoles();
+    }
+
+    public void enableUserRole(int id, int roleId) {
+        var user = userRepository.get(id);
+        var roles = user.getRoles();
+        var newRole = roleRepository.get(roleId);
+        roles.add(newRole);
+        user.setRoles(roles);
+        userRepository.save(user);
+    }
+
+    public void disableUserRole(int id, int roleId) {
+        var user = userRepository.get(id);
+        var roles = user.getRoles();
+        roles.remove(roleRepository.get(roleId));
+        user.setRoles(roles);
         userRepository.save(user);
     }
 

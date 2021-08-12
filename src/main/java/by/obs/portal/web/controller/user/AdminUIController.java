@@ -1,5 +1,6 @@
 package by.obs.portal.web.controller.user;
 
+import by.obs.portal.persistence.model.user.Role;
 import by.obs.portal.persistence.model.user.User;
 import by.obs.portal.service.UserService;
 import by.obs.portal.utils.user.UserUtil;
@@ -14,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/ajax/admin/users")
@@ -57,5 +59,22 @@ public class AdminUIController {
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void enable(@PathVariable int id, @RequestParam boolean enabled) {
         userService.enable(id, enabled);
+    }
+
+    @GetMapping(value = "/{id}/roles", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Set<Role> getUserRoles(@PathVariable int id) {
+        return userService.getUserRolesById(id);
+    }
+
+    @PostMapping("/{id}/roles/{roleId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void enableUserRole(@PathVariable("id") int id, @PathVariable("roleId") int roleId) {
+        userService.enableUserRole(id, roleId);
+    }
+
+    @DeleteMapping("/{id}/roles/{roleId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void disableUserRole(@PathVariable("id") int id, @PathVariable("roleId") int roleId) {
+        userService.disableUserRole(id, roleId);
     }
 }

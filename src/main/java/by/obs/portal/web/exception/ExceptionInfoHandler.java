@@ -34,9 +34,14 @@ public class ExceptionInfoHandler {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final MessageUtil messageUtil;
     public static final String EXCEPTION_DUPLICATE_EMAIL = "exception.user.duplicateEmail";
+    public static final String EXCEPTION_DUPLICATE_ROLE = "exception.user.duplicateRole";
+    public static final String REPORT_GENERATOR_DUPLICATE_EMAIL = "exception.rep.gen.duplicateEmail";
 
     private static final Map<String, String> CONSTRAINS_I18N_MAP =
-            Map.of("users_unique_email_idx", EXCEPTION_DUPLICATE_EMAIL);
+            Map.of(
+                    "users_unique_email_idx", EXCEPTION_DUPLICATE_EMAIL,
+                    "users_role_idx", EXCEPTION_DUPLICATE_ROLE,
+                    "report_generator_email_idx", REPORT_GENERATOR_DUPLICATE_EMAIL);
 
     @Autowired
     public ExceptionInfoHandler(MessageUtil messageUtil) {

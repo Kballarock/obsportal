@@ -13,13 +13,18 @@ INSERT INTO users (name, email, password, registered, enabled, provider, provide
 ALTER TABLE role AUTO_INCREMENT = 1;
 INSERT INTO role (name) VALUES
 ('ROLE_ADMIN'),
-('ROLE_USER');
+('ROLE_USER'),
+('ROLE_REPORT_GENERATOR');
 
 ALTER TABLE privilege AUTO_INCREMENT = 1;
 INSERT INTO privilege (name) VALUES
 ('READ_PRIVILEGE'),
 ('WRITE_PRIVILEGE'),
-('CHANGE_PASSWORD_PRIVILEGE');
+('CHANGE_PASSWORD_PRIVILEGE'),
+('WRITE_REPORT_GENERATOR_PRIVILEGE'),
+('WRITE_ONE_WINDOW_PRIVILEGE'),
+('WRITE_E_SERVICE_CENTER_PRIVILEGE'),
+('WRITE_CONTROL_CENTER_PRIVILEGE');
 
 INSERT INTO users_roles (user_id, role_id) VALUES
 (100000, 1),
@@ -30,7 +35,8 @@ INSERT INTO roles_privileges (role_id, privilege_id) VALUES
 (1, 2),
 (1, 3),
 (2, 1),
-(2, 3);
+(2, 3),
+(3, 4);
 
 ALTER TABLE verification_token AUTO_INCREMENT = 1;
 INSERT INTO verification_token (id, expiry_date, token, user_id) VALUES

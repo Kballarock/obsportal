@@ -31,16 +31,19 @@ $(function () {
                         "className": "text-center"
                     },
                     {
+                        "width": "30px",
                         "orderable": false,
                         "defaultContent": "",
                         "render": emailBtn
                     },
                     {
+                        "width": "30px",
                         "orderable": false,
                         "defaultContent": "",
                         "render": renderEditBtn
                     },
                     {
+                        "width": "30px",
                         "orderable": false,
                         "defaultContent": "",
                         "render": renderDeleteBtn
@@ -73,6 +76,6 @@ function renderDateBtn(date) {
 function emailBtn(data, type, row) {
     if (type === "display") {
         return '<button title="' + email_msg + '" onclick="showEmailList(' + row.id + ')" class="btn1 rounded"' +
-            ' style="background-color: #3092f3;  margin-right: -14px"><i class="fa fa-envelope"></i></button>';
+            ' style="background-color: #3092f3;"><i class="fa fa-envelope"></i></button>';
     }
 }

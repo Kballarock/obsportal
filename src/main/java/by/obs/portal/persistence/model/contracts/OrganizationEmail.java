@@ -18,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Table(name = "rep_gen_email")
+@Table(name = "rep_gen_email", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "report_generator_email_idx")})
 public class OrganizationEmail extends AbstractBaseEntity {
 
     @NotEmpty(message = "{organizationEmail.email.notEmpty}", groups = ErrorSequence.First.class)

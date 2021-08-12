@@ -16,11 +16,6 @@ public class DataJpaPrivilegeRepository implements PrivilegeRepository {
     }
 
     @Override
-    public Privilege getByName(String name) {
-        return crudPrivilegeRepository.findByName(name);
-    }
-
-    @Override
     public void delete(Privilege privilege) {
         crudPrivilegeRepository.delete(privilege);
     }
@@ -28,5 +23,10 @@ public class DataJpaPrivilegeRepository implements PrivilegeRepository {
     @Override
     public Privilege create(Privilege privilege) {
         return crudPrivilegeRepository.save(privilege);
+    }
+
+    @Override
+    public Privilege get(int id) {
+        return crudPrivilegeRepository.findById(id).orElse(null);
     }
 }

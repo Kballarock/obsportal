@@ -14,7 +14,7 @@ import java.util.Collection;
 @Setter
 @NoArgsConstructor
 @ToString(callSuper = true)
-@Table(name = "role")
+@Table(name = "role", uniqueConstraints = {@UniqueConstraint(columnNames = "name", name = "users_role_idx")})
 @SuperBuilder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Role extends AbstractNamedEntity {
