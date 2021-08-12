@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 @SuperBuilder(toBuilder = true)
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
-    @NotBlank(message = "{abstractNamedEntity.NotBlank.name}", groups = ErrorSequence.First.class)
+    @NotBlank(message = "{abstractNamedEntity.NotBlank.name}")
     private String name;
 
     protected AbstractNamedEntity(String name) {

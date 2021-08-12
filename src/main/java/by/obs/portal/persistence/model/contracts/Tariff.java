@@ -25,12 +25,10 @@ public class Tariff extends AbstractNamedEntity {
     @Column(name = "category", nullable = false)
     Integer category;
 
-    @NotNull
     @JsonIgnore
     @Column(name = "u_min", nullable = false)
     Integer minUsers;
 
-    @NotNull
     @JsonIgnore
     @Column(name = "u_max", nullable = false)
     Integer maxUsers;
