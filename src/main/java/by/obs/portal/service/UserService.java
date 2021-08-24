@@ -85,8 +85,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public Set<Role> getUserRolesById(int userId) {
-        return userRepository.get(userId).getRoles();
+    public Set<Role> getUserRolesById(int id) {
+        return userRepository.get(id).getRoles();
     }
 
     public void enableUserRole(int id, int roleId) {
@@ -101,7 +101,7 @@ public class UserService {
     public void disableUserRole(int id, int roleId) {
         var user = userRepository.get(id);
         var roles = user.getRoles();
-        roles.remove(roleRepository.get(roleId));
+        checkNotFoundWithId(roles.remove(roleRepository.get(roleId)), roleId);
         user.setRoles(roles);
         userRepository.save(user);
     }

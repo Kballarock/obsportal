@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.ConstraintViolationException;
+import java.util.HashSet;
 import java.util.Set;
 
 import static by.obs.portal.testdata.UserTestData.*;
@@ -119,5 +120,35 @@ class UserServiceTest extends AbstractServiceTest {
         userService.updatePassword(ADMIN, "newUserPassword");
         var updatedPassword = userService.get(ADMIN.id()).getPassword();
         passwordEncoder.matches("newUserPassword", updatedPassword);
+    }
+
+    @Test
+    void getUserRolesById() {
+        var userRoles = userService.getUserRolesById(ADMIN.id());
+        assertEquals(new HashSet<>(userRoles), new HashSet<>(ADMIN.getRoles()));
+    }
+
+    @Test
+    void getWrongUserRolesById() {
+        var userRoles = userService.getUserRolesById(USER.id());
+        assertNotEquals(new HashSet<>(userRoles), new HashSet<>(ADMIN.getRoles()));
+    }
+
+    @Test
+    void enableUserRole() {
+        userService.enableUserRole(ADMIN.id(), ROLE_REPORT_GENERATOR.id());
+        var userRoles = userService.getUserRolesById(ADMIN.id());
+        assertEquals(new HashSet<>(userRoles), new HashSet<>(ADMIN_ADD_NEW_ROLE));
+    }
+
+    @Test
+    void disableUserRole() {
+        userService.disableUserRole(USER.id(), ROLE_USER.id());
+        assertThrows(NotFoundException.class, () -> userService.disableUserRole(USER.id(), ROLE_USER.id()));
+    }
+
+    @Test
+    void disableUserRoleNotExisting() {
+        assertThrows(NotFoundException.class, () -> userService.disableUserRole(USER.id(), 1547852));
     }
 }

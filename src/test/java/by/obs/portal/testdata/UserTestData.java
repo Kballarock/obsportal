@@ -12,6 +12,7 @@ public class UserTestData {
 
     private static final Role ROLE_ADMIN = new Role(1, "ROLE_ADMIN");
     public static final Role ROLE_USER = new Role(2, "ROLE_USER");
+    public static final Role ROLE_REPORT_GENERATOR = new Role(3, "ROLE_REPORT_GENERATOR");
 
     public static final User ADMIN = new User(100000, "Admin", "admin@admin.com",
             "admin", AuthProvider.local, null, Set.of(ROLE_ADMIN));
@@ -25,7 +26,9 @@ public class UserTestData {
             "password", "password");
     public static final UserDto USER_DTO_3 = new UserDto("newUsername", "newusername@yandex.com",
             "password", "password");
+
     public static final List<User> USERS = List.of(USER, ADMIN);
+    public static final Set<Role> ADMIN_ADD_NEW_ROLE = Set.of(ROLE_REPORT_GENERATOR, ROLE_ADMIN);
 
     public static User getNew() {
         Set<Role> roles = new HashSet<>();
