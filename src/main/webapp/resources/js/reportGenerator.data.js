@@ -34,19 +34,22 @@ $(function () {
                         "width": "30px",
                         "orderable": false,
                         "defaultContent": "",
-                        "render": emailBtn
+                        "render": emailBtn,
+                        "visible": repGenPrivilege
                     },
                     {
                         "width": "30px",
                         "orderable": false,
                         "defaultContent": "",
-                        "render": renderEditBtn
+                        "render": renderEditBtn,
+                        "visible": repGenPrivilege
                     },
                     {
                         "width": "30px",
                         "orderable": false,
                         "defaultContent": "",
-                        "render": renderDeleteBtn
+                        "render": renderDeleteBtn,
+                        "visible": repGenPrivilege
                     }
                 ],
                 "order": [

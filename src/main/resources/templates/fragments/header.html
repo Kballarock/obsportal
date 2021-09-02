@@ -14,12 +14,12 @@
                 <li class="menu-active"><a th:href="@{registration}" th:text="#{common.singUp.btn}"
                                            sec:authorize="anonymous"></a></li>
 
-                <li class="menu-has-children" sec:authorize="hasAuthority('WRITE_PRIVILEGE')"><a
+                <li class="menu-has-children" sec:authorize="hasAnyAuthority('WRITE_PRIVILEGE', 'READ_PRIVILEGE')"><a
                         th:text="#{common.contract}"></a>
 
                     <ul id="contract" style="width: 170px;">
-                        <li><a th:href="@{reportGenerator}" th:text="#{title.reportGenerator}"></a></li>
-                        <li><a th:text="#{title.oneWindow}"></a>
+                        <li><a th:href="@{reportGenerator}"><span class="fa fa-dot-circle-o"></span>&nbsp;[[#{title.reportGenerator}]]</a></li>
+                        <li><a><span class="fa fa-square"></span>&nbsp;[[#{title.oneWindow}]]</a></li>
                     </ul>
                 </li>
 
@@ -27,13 +27,12 @@
                         th:text="#{common.manual}"></a>
 
                     <ul id="users" style="width: 170px;">
-                        <li class="menu-has-children"><a th:text="#{admin.users.link}"></a>
+                        <li class="menu-has-children"><a><span class="fa fa-users"></span>&nbsp;[[#{admin.users.link}]]</a>
                             <ul>
-                                <li><a th:href="@{users}" th:text="#{common.userList}"></a></li>
-                                <li><a th:text="#{common.userRoles}"></a></li>
+                                <li><a th:href="@{users}"><span class="fa fa-list"></span>&nbsp;[[#{common.userList}]]</a></li>
                             </ul>
                         </li>
-                        <li><a th:href="@{tariffs}" th:text="#{common.tariffs}"></a>
+                        <li><a th:href="@{tariffs}"><span class="fa fa-money"></span>&nbsp;[[#{common.tariffs}]]</a>
                     </ul>
                 </li>
 

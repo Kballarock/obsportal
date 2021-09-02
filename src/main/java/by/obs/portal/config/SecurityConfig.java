@@ -78,11 +78,18 @@ public class SecurityConfig {
                     .authorizeRequests()
                     .antMatchers("/index", "/forgetPassword*", "/service/resetPassword*", "/login*",
                             "/registration*", "/service/changeNewPassword*", "/successRegistration", "/exception",
-                            "/confirmRegistration*", "/registrationError*", "/resendRegistrationToken*").permitAll()
-                    .antMatchers("/**/admin/**", "/users").hasAuthority("WRITE_PRIVILEGE")
-                    .antMatchers("/home/**").hasAnyAuthority("READ_PRIVILEGE", "WRITE_PRIVILEGE")
+                            "/confirmRegistration*", "/registrationError*", "/resendRegistrationToken*")
+                    .permitAll()
+
+                    .antMatchers("/**/admin/**", "/users")
+                    .hasAuthority("WRITE_PRIVILEGE")
+
+                    .antMatchers("/home/**", "/reportGenerator/**")
+                    .hasAnyAuthority("READ_PRIVILEGE", "WRITE_PRIVILEGE", "WRITE_REPORT_GENERATOR_PRIVILEGE")
+
                     .antMatchers("/service/updatePassword*", "/profile/editPassword*",
-                            "/service/savePassword*", "/updatePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
+                            "/service/savePassword*", "/updatePassword*")
+                    .hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
 
                     .and()
                     .formLogin()
@@ -186,8 +193,13 @@ public class SecurityConfig {
                     .antMatchers("/rest/registration", "/rest/confirmRegistration*",
                             "/rest/service/resetPassword*", "/rest/resendRegistrationToken*",
                             "/rest/service/changeNewPassword*").anonymous()
+
                     .antMatchers("/rest/service/updatePassword*",
                             "/rest/service/savePassword*").hasAuthority("CHANGE_PASSWORD_PRIVILEGE")
+
+                    .antMatchers("/rest/reportGenerator/**")
+                    .hasAnyAuthority("READ_PRIVILEGE", "WRITE_PRIVILEGE", "WRITE_REPORT_GENERATOR_PRIVILEGE")
+
                     .antMatchers("/**").authenticated()
 
                     .and()
