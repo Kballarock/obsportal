@@ -31,4 +31,9 @@ public class OrganizationEmail extends AbstractBaseEntity {
     @JoinColumn(name = "rep_gen_id", nullable = false)
     @JsonIgnore
     ReportGenerator reportGenerator;
+
+    public OrganizationEmail(Integer id, String email) {
+        super(id);
+        this.email = email;
+    }
 }

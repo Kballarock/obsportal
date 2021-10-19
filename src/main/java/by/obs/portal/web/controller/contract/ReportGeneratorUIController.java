@@ -44,10 +44,6 @@ public class ReportGeneratorUIController {
     @PostMapping
     public void createOrUpdate(@Validated(ErrorSequence.class) ReportGenerator reportGenerator) {
         if (reportGenerator.isNew()) {
-
-            System.out.println("REP:" + reportGenerator.toString());
-
-
             reportGeneratorService.create(reportGenerator);
         } else {
             reportGeneratorService.update(reportGenerator);

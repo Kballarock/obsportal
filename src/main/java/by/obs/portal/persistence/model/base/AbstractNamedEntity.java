@@ -6,6 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
+import javax.validation.groups.Default;
 
 @MappedSuperclass
 @Data
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @SuperBuilder(toBuilder = true)
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
-    @NotBlank(message = "{abstractNamedEntity.NotBlank.name}")
+    @NotBlank(message = "{abstractNamedEntity.NotBlank.name}", groups = {ErrorSequence.First.class, Default.class})
     private String name;
 
     protected AbstractNamedEntity(String name) {

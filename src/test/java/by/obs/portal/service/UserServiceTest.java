@@ -95,7 +95,7 @@ class UserServiceTest extends AbstractServiceTest {
     @Test
     void createNewUserWithWrongData() {
         validateRootCause(() -> userService.create(
-                new User(null, "  ", "mail@mail.ru", "password",
+                new User(null, " ", "mail@mail.ru", "password",
                         AuthProvider.local, null, Set.of(ROLE_USER))), ConstraintViolationException.class);
 
         validateRootCause(() -> userService.create(

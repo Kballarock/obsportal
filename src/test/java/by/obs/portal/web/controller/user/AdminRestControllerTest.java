@@ -129,9 +129,9 @@ class AdminRestControllerTest extends AbstractControllerTest {
 
     @Test
     void createInvalid() throws Exception {
-        User expected = new User(null, null, "",
+        User newUser = new User(null, null, "",
                 "user", AuthProvider.local, null, Set.of(ROLE_USER));
-        perform(doPost().jsonBody(expected).basicAuth(ADMIN))
+        perform(doPost().jsonBody(newUser).basicAuth(ADMIN))
                 .andExpect(status().isUnprocessableEntity())
                 .andExpect(errorType(VALIDATION_ERROR))
                 .andDo(print());

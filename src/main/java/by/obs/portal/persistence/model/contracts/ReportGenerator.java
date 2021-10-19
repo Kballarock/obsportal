@@ -22,7 +22,7 @@ import java.time.LocalDate;
 @Table(name = "report_generator")
 public class ReportGenerator extends AbstractNamedEntity {
 
-    @NotEmpty(message = "{reportGenerator.contractType.notEmpty}", groups = ErrorSequence.First.class)
+    @NotBlank(message = "{reportGenerator.contractType.notBlank}", groups = ErrorSequence.First.class)
     @Size(min = 1, max = 10, message = "{reportGenerator.contractType.size}", groups = ErrorSequence.Second.class)
     @Column(name = "c_type")
     String contractType;
@@ -46,4 +46,14 @@ public class ReportGenerator extends AbstractNamedEntity {
     @Min(value = 1, message = "{reportGenerator.usersAmount.min}", groups = ErrorSequence.Second.class)
     @Column(name = "users_amount")
     Integer usersAmount;
+
+    public ReportGenerator(Integer id, String name, String contractType, Integer contractNumber,
+                           LocalDate contractDate, Integer unp, Integer usersAmount) {
+        super(id, name);
+        this.contractType = contractType;
+        this.contractNumber = contractNumber;
+        this.contractDate = contractDate;
+        this.unp = unp;
+        this.usersAmount = usersAmount;
+    }
 }

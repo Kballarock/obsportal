@@ -40,7 +40,7 @@ public class ReportGeneratorService {
     }
 
     public void update(final ReportGenerator reportGenerator) {
-        Assert.notNull(reportGenerator, "User must not be null");
+        Assert.notNull(reportGenerator, "ReportGenerator must not be null");
         reportGeneratorRepository.save(reportGenerator);
     }
 }
