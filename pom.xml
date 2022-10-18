@@ -23,7 +23,7 @@
 
         <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
 
-        <jackson.version>2.11.1</jackson.version>
+        <jackson.version>2.12.7.1</jackson.version>
 
         <guava.version>29.0-jre</guava.version>
 
