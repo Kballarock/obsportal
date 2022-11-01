@@ -31,7 +31,7 @@
 
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
 
-        <webjars-locator.version>0.40</webjars-locator.version>
+        <webjars-locator.version>0.46</webjars-locator.version>
         <webjars-flag.icon>2.4.0</webjars-flag.icon>
         <webjars-jquery.version>3.6.0</webjars-jquery.version>
         <webjars-datetimepicker.version>2.5.20</webjars-datetimepicker.version>
