@@ -21,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <logstash-logback-encoder.version>6.3</logstash-logback-encoder.version>
+        <logstash-logback-encoder.version>7.3</logstash-logback-encoder.version>
 
         <jackson.version>2.11.1</jackson.version>
 
