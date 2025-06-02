@@ -29,7 +29,7 @@
 
         <jjwt.version>0.9.1</jjwt.version>
 
-        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <commons-beanutils.version>1.11.0</commons-beanutils.version>
 
         <webjars-locator.version>0.40</webjars-locator.version>
         <webjars-flag.icon>2.4.0</webjars-flag.icon>
